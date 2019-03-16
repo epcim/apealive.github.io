@@ -38,6 +38,11 @@
   </url>
   
   <url>
+    <loc>http://apealive.net/post/salt-formula-testing-kitchen-salt-1/</loc>
+    <lastmod>2017-07-20T12:01:07+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://apealive.net/post/ssh-config-compile/</loc>
     <lastmod>2017-07-05T10:31:07+02:00</lastmod>
   </url>
@@ -370,6 +375,12 @@
   </url>
   
   <url>
+    <loc>http://apealive.net/tags/inspec/</loc>
+    <lastmod>2017-07-20T12:01:07+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://apealive.net/tags/invoke/</loc>
     <lastmod>2018-03-06T15:01:07+02:00</lastmod>
     <priority>0</priority>
@@ -384,6 +395,18 @@
   <url>
     <loc>http://apealive.net/tags/kids/</loc>
     <lastmod>2012-08-16T19:50:29+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://apealive.net/tags/kitchen-salt/</loc>
+    <lastmod>2017-07-20T12:01:07+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://apealive.net/tags/kitchen-test/</loc>
+    <lastmod>2017-07-20T12:01:07+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -540,6 +563,12 @@
   <url>
     <loc>http://apealive.net/tags/</loc>
     <lastmod>2009-04-10T14:28:24+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://apealive.net/tags/test-kitchen/</loc>
+    <lastmod>2017-07-20T12:01:07+02:00</lastmod>
     <priority>0</priority>
   </url>
   

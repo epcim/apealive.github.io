@@ -47,6 +47,26 @@ however the public participation in the past year was also important.&lt;/p&gt;<
     </item>
     
     <item>
+      <title>Testing salt formulas and models with kitchen-salt</title>
+      <link>http://apealive.net/post/salt-formula-testing-kitchen-salt-1/</link>
+      <pubDate>Thu, 20 Jul 2017 12:01:07 +0200</pubDate>
+      
+      <guid>http://apealive.net/post/salt-formula-testing-kitchen-salt-1/</guid>
+      <description>&lt;div class=&#34;document&#34;&gt;
+
+
+&lt;div class=&#34;section&#34; id=&#34;tl-dr&#34;&gt;
+&lt;h2&gt;TL;DR&lt;/h2&gt;
+&lt;p&gt;An overview how to implement salt-formula test&#39;s with kitchen-salt.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section&#34; id=&#34;overview&#34;&gt;
+&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;In this article I will talk about writing and testing &lt;a class=&#34;reference external&#34; href=&#34;https://github.com/salt-formulas[salt-formulas&#34;&gt;https://github.com/salt-formulas[salt-formulas&lt;/a&gt;].
+An curated collection of formulas behind salt-formulas community. The concepts however will fit to any
+salt formula.&lt;/p&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
       <title>Byobu script to pre-open session to salt minions</title>
       <link>http://apealive.net/post/byobu-salt/</link>
       <pubDate>Thu, 05 Jan 2017 10:31:07 +0200</pubDate>
