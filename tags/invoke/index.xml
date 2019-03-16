@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Invoke on make me: APe</title>
+    <link>http://apealive.net/tags/invoke/</link>
+    <description>Recent content in Invoke on make me: APe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 06 Mar 2018 15:01:07 +0200</lastBuildDate>
+    
+	<atom:link href="http://apealive.net/tags/invoke/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Image builds with DockerMake</title>
+      <link>http://apealive.net/post/2018-02-docker-make/</link>
+      <pubDate>Tue, 06 Mar 2018 15:01:07 +0200</pubDate>
+      
+      <guid>http://apealive.net/post/2018-02-docker-make/</guid>
+      <description>&lt;div class=&#34;paragraph lead&#34;&gt;
+&lt;p&gt;Dockerfile is nice, but it’s a puppet toy when it comes to scale. I am looking for
+a solution to consistently build many docker images with shared layers and consistent and predictable build workflow.&lt;/p&gt;
+&lt;/div&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

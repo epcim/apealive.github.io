@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Petr on make me: APe</title>
+    <link>http://apealive.net/tags/petr/</link>
+    <description>Recent content in Petr on make me: APe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 05 Dec 2018 10:28:19 +0200</lastBuildDate>
+    
+	<atom:link href="http://apealive.net/tags/petr/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Who am I?</title>
+      <link>http://apealive.net/about_petr/</link>
+      <pubDate>Wed, 05 Dec 2018 10:28:19 +0200</pubDate>
+      
+      <guid>http://apealive.net/about_petr/</guid>
+      <description>Petr Michalec An Architect, Developer. ExIBMer. Vi(m) lover. DevOps and OpenSource devoted. Performing cloud infrastructure and application architecture with passion for the edge thing. If you wanna reach me use Keybase, Twitter, Slack. (emails are not the best pick)
+Contact Twitter, Keybase, GitHub, IRC  @epcim
+ Work email epcim(a)apealive.net pmichalec(a)ves.io  Work address Volterra Inc. 2550 Great America Way, Suite 350 Santa Clara, CA 95054 -- Thámova 137/16 Prague - Karlín, 18600 Czech Republic  CV Practicing Developer/Architect/Tech/Team Lead.</description>
+    </item>
+    
+  </channel>
+</rss>

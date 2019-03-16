@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Validation on make me: APe</title>
+    <link>http://apealive.net/tags/validation/</link>
+    <description>Recent content in Validation on make me: APe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 03 Apr 2018 17:16:07 +0200</lastBuildDate>
+    
+	<atom:link href="http://apealive.net/tags/validation/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Brand new &#39;Salted&#39; containers</title>
+      <link>http://apealive.net/post/2018-04-salted-containers/</link>
+      <pubDate>Tue, 03 Apr 2018 17:16:07 +0200</pubDate>
+      
+      <guid>http://apealive.net/post/2018-04-salted-containers/</guid>
+      <description>TL;DR My matrix looks like:
+ invoke.yaml      Tools evaluated To solve the issue I wrote simple &#34;makefile&#34; specification with PyInvoke.
+  </description>
+    </item>
+    
+  </channel>
+</rss>

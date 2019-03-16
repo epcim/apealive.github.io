@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Profile on make me: APe</title>
+    <link>http://apealive.net/tags/profile/</link>
+    <description>Recent content in Profile on make me: APe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 05 Dec 2018 10:28:19 +0200</lastBuildDate>
+    
+	<atom:link href="http://apealive.net/tags/profile/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Who am I?</title>
+      <link>http://apealive.net/about_petr/</link>
+      <pubDate>Wed, 05 Dec 2018 10:28:19 +0200</pubDate>
+      
+      <guid>http://apealive.net/about_petr/</guid>
+      <description>Petr Michalec An Architect, Developer. ExIBMer. Vi(m) lover. DevOps and OpenSource devoted. Performing cloud infrastructure and application architecture with passion for the edge thing. If you wanna reach me use Keybase, Twitter, Slack. (emails are not the best pick)
+Contact Twitter, Keybase, GitHub, IRC  @epcim
+ Work email epcim(a)apealive.net pmichalec(a)ves.io  Work address Volterra Inc. 2550 Great America Way, Suite 350 Santa Clara, CA 95054 -- Thámova 137/16 Prague - Karlín, 18600 Czech Republic  CV Practicing Developer/Architect/Tech/Team Lead.</description>
+    </item>
+    
+    <item>
+      <title>Photography</title>
+      <link>http://apealive.net/photo/</link>
+      <pubDate>Mon, 05 Oct 2015 10:28:26 +0200</pubDate>
+      
+      <guid>http://apealive.net/photo/</guid>
+      <description>NOTE: This page is early draft, sorry for inconvenience!
+Photography I enjoy color and like to photograph people and situations.
+This page serve for quick access to our public photographs.
+Pubclic albums  Google+ Flicker  Photostreams  Twitter iCloud,ask to get private links  Equipment Nikon D200 (APS)  28-XXmm Nikkor, Nikkor 50mm f/2, Tamron f/4 12-18mm.  Stativ  Manfroto 190ProB  Who I follow Ken Rockwell I like this man his &amp;ldquo;classic&amp;rdquo; articles.</description>
+    </item>
+    
+    <item>
+      <title>Who is APe?</title>
+      <link>http://apealive.net/about/</link>
+      <pubDate>Mon, 05 Oct 2015 10:28:19 +0200</pubDate>
+      
+      <guid>http://apealive.net/about/</guid>
+      <description>APe je maskot naší rodiny. Dobře profláknutý mezi našimi kamarády pro své kousky. Občas ho ztratíme, takže docela dost cestuje&amp;hellip;
+My, Adriana a Petr, bydlíme v Brandýse nad Labem - Staré Boleslavi spolu s Mikulášem (2012), Štěpánem (2014) a Rozárkou (2016).
+Rádi naplňujeme volný čas sportem, cestami za zážitky , dobrým kafem, vínem, italskou pizzou a dětmi, dětmi, dětmi. V roce 2009, na začátku ekonomické krize jsme si vzali rok pracovního volna a odjeli jsme cestovat na Nový Zaeland, Austrálii, Samou a Cook Islands.</description>
+    </item>
+    
+  </channel>
+</rss>

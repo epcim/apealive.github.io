@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Exif on make me: APe</title>
+    <link>http://apealive.net/tags/exif/</link>
+    <description>Recent content in Exif on make me: APe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 10 Apr 2009 11:53:44 +0000</lastBuildDate>
+    
+	<atom:link href="http://apealive.net/tags/exif/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Exiftool - pár triků na fotky</title>
+      <link>http://apealive.net/post/exiftool-par-triku-na-fotky/</link>
+      <pubDate>Fri, 10 Apr 2009 11:53:44 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/exiftool-par-triku-na-fotky/</guid>
+      <description>&amp;nbsp;
+Ahoj, dnes prakticky.
+V&amp;scaron;ichni fot&amp;iacute;me. M&amp;aacute;m v ruk&amp;aacute;vu p&amp;aacute;r triků pro manipulaci s exif informac&amp;iacute; uloženou ve fotografii. Při zpracov&amp;aacute;n&amp;iacute; fotek z Thajska jsem měl z&amp;aacute;běry z cca pěti fotoapar&amp;aacute;tů. Někteř&amp;iacute; autoři měnili čas fotoapar&amp;aacute;tu během přejezdů čaosov&amp;yacute;ch z&amp;oacute;n, jin&amp;iacute; ne. Bylo třeba hromadně opravit čas ve v&amp;scaron;ech fotk&amp;aacute;ch a pokud možno dos&amp;aacute;hnout jednotn&amp;eacute;ho řazen&amp;iacute; fotek v adres&amp;aacute;ři pro př&amp;iacute;jemn&amp;eacute; proch&amp;aacute;zen&amp;iacute;.
+Potřeboval jsem tedy co uměl modifikovat v exif informaci fotografie datum a čas vytvořen&amp;iacute;.</description>
+    </item>
+    
+  </channel>
+</rss>

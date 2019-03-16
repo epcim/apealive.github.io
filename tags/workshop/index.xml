@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Workshop on make me: APe</title>
+    <link>http://apealive.net/tags/workshop/</link>
+    <description>Recent content in Workshop on make me: APe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 18 Apr 2016 22:39:06 +0200</lastBuildDate>
+    
+	<atom:link href="http://apealive.net/tags/workshop/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Started IBM internal LEVEL DEVil workshop series</title>
+      <link>http://apealive.net/post/2016-04_started-ibm-internal-level-devil-workshop-series/</link>
+      <pubDate>Mon, 18 Apr 2016 22:39:06 +0200</pubDate>
+      
+      <guid>http://apealive.net/post/2016-04_started-ibm-internal-level-devil-workshop-series/</guid>
+      <description>LEVEL DEVil workshops Running a DevOps workshop for Poland colleagues in March was a one thing but from a day one I was quite sure I will do have to repeat it locally.
+Practicing DevOps and Continuous Delivery in company as IBM and for the enterprise customers might be a tough task. That&amp;rsquo;s nothing about enterprises, IBM is actually on a global level doing pretty much well in my eyes in the kind of internal transformation.</description>
+    </item>
+    
+    <item>
+      <title>Running devops workshop in Warsaw</title>
+      <link>http://apealive.net/post/2016-03_running-devops-workshop-warsaw/</link>
+      <pubDate>Wed, 09 Mar 2016 12:23:39 +0200</pubDate>
+      
+      <guid>http://apealive.net/post/2016-03_running-devops-workshop-warsaw/</guid>
+      <description>DevOps workshop with Chef At the end of the 2015 I was asked by IBM colleague from Poland who is leading a team of Java developers to develop and deliver a DevOps workshop.
+I took a challenge and delivered March 9-10 in Warsaw personally. The slides from the event are available at: http://slides.com/petrmichalec/devops-workshop
+Agenda At first quite challenge as the DevOps topic is so wide, right? Finally I narrowed agenda to some &amp;ldquo;devops&amp;rdquo; discussion, Chef.</description>
+    </item>
+    
+  </channel>
+</rss>

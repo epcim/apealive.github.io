@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Scripts on make me: APe</title>
+    <link>http://apealive.net/tags/scripts/</link>
+    <description>Recent content in Scripts on make me: APe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 23 Jun 2009 10:44:06 +0000</lastBuildDate>
+    
+	<atom:link href="http://apealive.net/tags/scripts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Jak odstranit diakritiku z názvu souborů</title>
+      <link>http://apealive.net/post/jak-odstranit-diakritiku-z-nazvu-souboru/</link>
+      <pubDate>Tue, 23 Jun 2009 10:44:06 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/jak-odstranit-diakritiku-z-nazvu-souboru/</guid>
+      <description>Potřeboval jsem odstranit diakritiku z n&amp;aacute;zvů souborů. Pod winxp s cygwinem (tr viz d&amp;aacute;le nefungoval a o př&amp;iacute;kazu unaccent jsem nevěděl). PS: Filtruji .svn adres&amp;aacute;ře. S unaccent by to bylo asi v&amp;yacute;razně rychlej&amp;scaron;&amp;iacute;. IFS je asi zbytečn&amp;eacute;. Um&amp;iacute; si poradit s duplicitami. Adres&amp;aacute;ře neře&amp;scaron;&amp;iacute;.
+V&amp;yacute;sledek vypad&amp;aacute; takto:
+#!/bin/bash srcenc=cp1250 SAVEIFS=$IFS IFS=$(echo -en “\n\b”) if [ $# -eq 0 ];then echo “Usage: $0 directory …” else while [ $# -gt 0 ];do if [ -d “$1” ];then find “$1” -mindepth 1 -maxdepth 1 -type f | grep -v “.</description>
+    </item>
+    
+  </channel>
+</rss>

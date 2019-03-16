@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Meetup on make me: APe</title>
+    <link>http://apealive.net/tags/meetup/</link>
+    <description>Recent content in Meetup on make me: APe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 27 Apr 2016 12:39:06 +0200</lastBuildDate>
+    
+	<atom:link href="http://apealive.net/tags/meetup/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker Swarm meetup talk</title>
+      <link>http://apealive.net/post/2016_04_dockermeetup-swarm-talk/</link>
+      <pubDate>Wed, 27 Apr 2016 12:39:06 +0200</pubDate>
+      
+      <guid>http://apealive.net/post/2016_04_dockermeetup-swarm-talk/</guid>
+      <description>Docker Swarm I have been working closely with TCP Cloud in my spare time during past weeks to evaluate Docker Swarm cluster orchestration. Kind of easy level to get some insight into the product and it&amp;rsquo;s bugs ;). Yeah.. it&amp;rsquo;s not production ready yet!
+Anyway I am going to deliver a sweet talk and open discussion at today&amp;rsquo;s Docker Meetup (Prague). For these who may concern the presentation is online already.</description>
+    </item>
+    
+  </channel>
+</rss>

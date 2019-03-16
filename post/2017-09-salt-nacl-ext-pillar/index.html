@@ -1,0 +1,689 @@
+
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>make me: APe</title>
+        <meta name="author">
+        <meta name="description" content="APe&#39;s blog ~ #family, #tech, #photography, #DevOps, #Cloud, #Chef, #RC planes">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="generator" content="Hugo 0.52" />
+        <link href="http://apealive.net/post/index.xml" rel="alternate" type="application/rss+xml" title="make me: APe" />
+        <link href="http://apealive.net/post/index.xml" rel="feed" type="application/rss+xml" title="make me: APe" />
+        <link href="https://fonts.googleapis.com/css?family=Droid+Sans|Encode+Sans+Condensed|Roboto|Roboto+Condensed" rel="stylesheet">
+        <link rel="stylesheet" href="http://apealive.net/css/styles.css">
+        
+        <link rel="stylesheet" href="http://apealive.net/css/asciidoctor.css">
+        
+        <link rel="stylesheet" href="http://apealive.net/css/apealive.css">
+        
+        <link rel="icon" href="http://apealive.net/favicon.ico">
+        <link rel="apple-touch-icon" href="http://apealive.net/apple-touch-icon.png" />
+        
+        <link rel="stylesheet" href="http://apealive.net/css/highlightjs/github.css">
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.0/modernizr.min.js"></script>
+        <script>
+            $('#expand').click(function(){
+               $(aside).toggle(400);
+               $(main).addClass('author-article-view');
+            });
+
+        </script>
+
+        <style>
+        .site-header h2 .logo {
+        background: url(http://apealive.net/img/ZenBG.png) repeat 0 0;
+        }
+        @media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6 / 2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
+          .site-header h2 .logo {
+            background-image: url(http://apealive.net/img/ZenBG.png);
+        }}
+       .site-header {
+         background: #2a373d url(http://apealive.net/img/ZenBG.png) repeat center center;
+         z-index: -1;
+        }
+        </style>
+    </head>
+
+    <body>
+        
+
+        <header class="site-header">
+          <div class="transparent-layer">
+              <h2>
+                  make me : APe
+              </h2>
+          </div>
+
+        
+          
+              
+              
+              
+              
+         
+         
+
+        </header>
+        <div class="author" >
+          <ul class="social" >
+            
+<li><a href="//twitter.com/epcim" class="icon-twitter" target="_blank" title="Twitter"></a></li>
+
+
+
+<li><a href="//twitter.com/apealive_net" class="icon-twitter" target="_blank" title="Twitter @apealive_net"></a></li>
+
+
+
+<li><a href="//facebook.com/petr.michalec" class="icon-facebook" target="_blank" title="Facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//github.com/epcim" class="icon-github" target="_blank" title="Github"></a></li>
+
+
+
+<li><a href="//plus.google.com/+PetrMichalec-Prague" class="icon-gplus" target="_blank" title="Google+"></a></li>
+
+
+
+<li><a href="//delicious.com/epcim" class="icon-delicious" target="_blank" title="Delicious"></a></li>
+
+
+<li><a href="http://apealive.net/post/index.xml" class="icon-rss" target="_blank" title="RSS"></a></li>
+
+          </ul>
+        </div>
+
+
+<div class="container clearfix">
+    <main role="main" class="content expand">
+        <article class="post">
+            <a class="btn" href="http://apealive.net/" title="Back to home">&laquo; Back to home</a>
+            
+<h1><a href="http://apealive.net/post/2017-09-salt-nacl-ext-pillar/" title="Salt NACL encryption for external pillars">Salt NACL encryption for external pillars</a></h1>
+
+<footer class="post-info">
+
+&middot; Tagged in
+    
+    <a href="http://apealive.net/tags/blog">blog</a>
+    , 
+    
+    <a href="http://apealive.net/tags/salt">salt</a>
+    , 
+    
+    <a href="http://apealive.net/tags/devops">devops</a>
+    , 
+    
+    <a href="http://apealive.net/tags/nacl">nacl</a>
+    , 
+    
+    <a href="http://apealive.net/tags/reclass">reclass</a>
+    
+    
+
+
+    </br>
+    Read in 5 min.
+
+
+</span>
+</footer>
+<div class="paragraph lead">
+<p>This article is about encrypting Satl external pillars with NACL.</p>
+</div>
+<div class="sect1">
+<h2 id="_tldr">TL;DR<a href="#_tldr" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Salt NACL is based on another SaltStack project <a href="https://github.com/saltstack/libnacl">libnacl</a>, an wrapper for <a href="https://github.com/jedisct1/libsodium">libsodium</a> and
+Salt nacl resources (<a href="https://github.com/saltstack/salt/blob/develop/salt/moduels/nacl.py">module</a>, <a href="https://github.com/saltstack/salt/blob/develop/salt/runners/nacl.py">runner</a>, <a href="https://github.com/saltstack/salt/blob/develop/salt/renderers/nacl.py">renderer</a> and <a href="https://github.com/saltstack/salt/blob/develop/salt/pillar/nacl.py">ext_pillar</a>).</p>
+</div>
+<div class="paragraph">
+<p>Overview of merged features to <a href="https://github.com/saltstack/salt/pulls?utf8=%E2%9C%93&amp;q=is%3Apr%20is%3Aclosed%20nacl"><code>develop</code></a> branch:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>NACL module, runner (around 2015.x)</p>
+</li>
+<li>
+<p>NACL update with secretbox, sealedbox (around 2017/Aug)</p>
+</li>
+<li>
+<p>NACL render with boxed syntax support <code>NACL[Cr7ptHere=]</code> (around 2017/Aug)</p>
+</li>
+<li>
+<p>NACL ext_pillar (around 2017/Aug)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Open bugs:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/saltstack/salt/pull/43564" class="bare">https://github.com/saltstack/salt/pull/43564</a></p>
+</li>
+<li>
+<p><a href="https://github.com/saltstack/salt/pull/43563" class="bare">https://github.com/saltstack/salt/pull/43563</a> or <a href="https://github.com/saltstack/salt/pull/43515" class="bare">https://github.com/saltstack/salt/pull/43515</a></p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_overview">Overview<a href="#_overview" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h3>
+<div class="paragraph">
+<p>To securely deal with credentials, keys and any other private data in Salt pillars
+you have couple of options to choose today.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.saltstack.com/en/develop/ref/sdb/all/index.html">SDB</a> in general
+allows to store data in external database backend and access them with ACLs.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Vault SDB module</p>
+</li>
+<li>
+<p>Immutalbe Secrets Manager SDB Module</p>
+</li>
+<li>
+<p>Confidant</p>
+</li>
+<li>
+<p>Etcd</p>
+</li>
+<li>
+<p>Consul</p>
+</li>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>GPG module and pillar encryption</p>
+</li>
+<li>
+<p>NACL module</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>However if you employ one of the <a href="https://github.com/saltstack/salt/tree/develop/salt/pillar">ext_pillar extensions</a> these features are not available,
+as we expect ext_pillar will already provide rendered pillar data.
+No extra template rendering/parsing is being performed.</p>
+</div>
+<div class="paragraph">
+<p>We could easily write a support for that into the Salt but there are also a down sides:
+As for example for SDB Vault, on each request to render SDB links it will spawn
+huge number of queries to Vault backed. Even for simple scenario that would be an
+overhead without a caching.</p>
+</div>
+<div class="paragraph">
+<p>Gpg pillar encryption is in today stable version and even has support
+for gpg render on <a href="https://github.com/saltstack/salt/blob/develop/salt/pillar/gpg.py">ext_pillar</a>.  as short string will always end-up as multi line entry for each.
+The obvious downside of using GPG is that any pillar item "value" of any length
+will look like this:</p>
+</div>
+<div class="listingblock">
+<div class="title">gpg-encrypted-pillar.yml</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">  a-secret:
+    -----BEGIN PGP MESSAGE-----
+    Version: GnuPG v1
+    hQEMAweRHKaPCfNeAQf9GLTN16hCfXAbPwU6BbBK0unOc7i9/etGuVc5CyU9Q6um
+    QuetdvQVLFO/HkrC4lgeNQdM6D9E8PKonMlgJPyUvC8ggxhj0/IPFEKmrsnv2k6+
+    cnEfmVexS7o/U1VOVjoyUeliMCJlAz/30RXaME49Cpi6No2+vKD8a4q4nZN1UZcG
+    RhkhC0S22zNxOXQ38TBkmtJcqxnqT6YWKTUsjVubW3bVC+u2HGqJHu79wmwuN8tz
+    m4wBkfCAd8Eyo2jEnWQcM4TcXiF01XPL4z4g1/9AAxh+Q4d8RIRP4fbw7ct4nCJv
+    Gr9v2DTF7HNigIMl4ivMIn9fp+EZurJNiQskLgNbktJGAeEKYkqX5iCuB1b693hJ
+    FKlwHiJt5yA8X2dDtfk8/Ph1Jx2TwGS+lGjlZaNqp3R1xuAZzXzZMLyZDe5+i3RJ
+    skqmFTbOiA==
+    =Eqsm
+    -----END PGP MESSAGE-----</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That is obviously quite hard to maintain if you manipulate your pillar yamls with text editor.</p>
+</div>
+<div class="paragraph">
+<p>With NACL it&#8217;s another story. First it&#8217;s based on [libsodium].</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+  Sodium is a new, easy-to-use software library for encryption, decryption, signatures,
+  password hashing and more. It is a portable, cross-compilable, installable,
+  packageable fork of <a href="http://nacl.cr.yp.to/">NaCl</a>, with a compatible API, and an extended API to improve usability even further. Its goal is to provide all of the core operations needed to build higher-level cryptographic tools.
+</blockquote>
+<div class="attribution">
+&#8212; libsodium.org
+</div>
+</div>
+<div class="paragraph">
+<p>With NACL with default setup the cipher is much shorter. And for short input it have also have
+padding to output within minimal block size mask (as far as I understand).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_use_case_with_ext_pillar">Use-Case with ext_pillar<a href="#_use_case_with_ext_pillar" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h3>
+<div class="paragraph">
+<p>While NACL in Salt can end-to-end encryption, the usage with ext_pillar is way of simplified.
+It don&#8217;t replace sophisticated, enterprise level, solutions as Vault.</p>
+</div>
+<div class="paragraph">
+<p>External pillars in salt is a list of engines that can process the pillar data in a
+pipeline. So you may use one external pillar backend to provide the data with encrypted values
+and the other one later to decrypt these.</p>
+</div>
+<div class="paragraph">
+<p>Salt Master then operates with already unencrypted pillar data. The benefit is processing speed and of course the ability to hide sensitive information on your repository.</p>
+</div>
+<div class="paragraph">
+<p>My Salt external pillars are distributed as git repository that holds the <a href="https://github.com/salt-formulas/reclass">reclass</a>.<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup> model of the deployment.</p>
+</div>
+<div class="paragraph">
+<p>(an shared piece of  <a href="https://github.com/Mirantis/reclass-system-salt-model">our model as an example</a>)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sealed_and_secret_box">Sealed and Secret box<a href="#_sealed_and_secret_box" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h3>
+<div class="paragraph">
+<p>When it comes to NACL implementation you have two options. <code>sealedbox</code> or <code>secretbox</code>.</p>
+</div>
+<div class="paragraph">
+<p>SecretBox is data encrypted using private key <code>sk</code>. Sealedbox is encrypted using public key <code>pk</code>.</p>
+</div>
+<div class="paragraph">
+<p>Recommend using Sealedbox because the one way encryption permits developers to encrypt data for source control but not decrypt.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_what_is_not_in_the_article">What is not in the article<a href="#_what_is_not_in_the_article" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h3>
+<div class="paragraph">
+<p>This tutorial don&#8217;t cover workflow for nacl key distribution, lifecycle and secure storage.</p>
+</div>
+<div class="paragraph">
+<p>For enterprise or large scale production environments you still want to combide it with additional SDB options like Vault (there is a possibility to mix native pillars and external pillars).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setup">Setup<a href="#_setup" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to get NACL configured you have to do couple of steps described below. Full documentation is available on <a href="https://docs.saltstack.com/en/develop/ref/modules/all/salt.modules.nacl.html">SaltStack doc page</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="_install_prerequisite_libraries">Install prerequisite libraries<a href="#_install_prerequisite_libraries" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ pip install --upgrade libnacl===1.5.2</code></pre>
+</div>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Caution</div>
+</td>
+<td class="content">
+Ensure you have version at least 1.5.2
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Optionally:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ apt install nacl-tools</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_generate_your_secret_and_public_key">Generate your secret and public key<a href="#_generate_your_secret_and_public_key" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ salt-call --local nacl.keygen /etc/salt/pki/master/nacl
+
+  local:
+    saved sk_file:/etc/salt/pki/master/nacl  pk_file: /etc/salt/pki/master/nacl.pub</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configure_salt_master_ext_pillars">Configure salt master ext_pillars<a href="#_configure_salt_master_ext_pillars" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h3>
+<div class="listingblock">
+<div class="title">/etc/salt/master.d/master.conf</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">nacl.config:
+    box_type: sealedbox
+    sk_file: /etc/salt/pki/master/nacl
+    pk_file: /etc/salt/pki/master/nacl.pub
+
+reclass: &amp;reclass
+  storage_type: yaml_fs
+  inventory_base_uri: /srv/salt/reclass
+
+master_tops:
+  reclass: *reclass
+
+ext_pillar:
+  - reclass: *reclass
+  - nacl: {}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_encrypt_your_secrets">Encrypt your secrets<a href="#_encrypt_your_secrets" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h3>
+<div class="paragraph">
+<p>We will use sealed box thus we keep our <code>sk_file</code> out of the model and distributed independently.
+Our secrets will be encrypted with the <code>pk_file</code> (public key). This one can be distributed with model on pillar.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ salt-call --local nacl.enc 'my_secret_value' pk_file=/etc/salt/pki/master/nacl.pub
+
+  hXTkJpC1hcKMS7yZVGESutWrkvzusXfETXkacSklIxYjfWDlMJmR37MlmthdIgjXpg4f2AlBKb8tc9Woma7q</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When the key is defined in the master config you can use it from the nacl runner:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ salt-run nacl.enc 'myotherpass'
+
+  ADDFD0Rav6p6+63sojl7Htfrncp5rrDVyeE4BSPO7ipq8fZuLDIVAzQLf4PCbDqi+Fau5KD3/J/E+Pw=</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nacl_on_ext_pillar">NACL on ext_pillar<a href="#_nacl_on_ext_pillar" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h3>
+<div class="sect3">
+<h4 id="_encrypted_values_on_pillar">Encrypted values on pillar<a href="#_encrypted_values_on_pillar" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h4>
+<div class="paragraph">
+<p>Update reclass <code>class</code> holding pillar data, it&#8217;s as easy a enclose the crypted data within the <code>NACL[crypted data]</code> envelope:</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+The syntax is for sure the same for non-ext_pillars
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">/srv/salt/reclass/classes/cluster/region01/infra/test_nacl.yml</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">parameters:
+  my_pillar:
+    my_nacl:
+        key0: unencrypted_value
+        key1: NACL[hXTkJpC1hcKMS7yZVGESutWrkvzusXfETXkacSklIxYjfWDlMJmR37MlmthdIgjXpg4f2AlBKb8tc9Woma7q]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Check pillar:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ salt cfg\* pillar.data |egrep 'my_nacl:' -A6
+    my_nacl:
+        ----------
+        key0:
+            unencrypted_value
+        key1:
+            my_secret_value</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+for native pillars you should mark first line of your pillar .yml with corresponding shebang header <code>#!yaml|nacl</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>TODO: Use CLI,sed to update your pillar&#8217;s on the fly.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_large_files">large files<a href="#_large_files" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ salt-call nacl.enc_file /tmp/cert.crt out=/srv/salt/env/dev/cert.nacl
+
+# or more advanced
+$ cert=$(cat /tmp/cert.crt)
+$ salt-call --out=newline_values_only nacl.enc_pub data="$cert" &gt; /srv/salt/env/dev/cert.nacl</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<code>/srv/salt/env/dev</code> is my <code>salt://</code> path.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>TODO: Add advanced example from our formulas</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_usage_of_nacl_module_on_native_pillars">Usage of nacl module on native pillars<a href="#_usage_of_nacl_module_on_native_pillars" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h3>
+<div class="paragraph">
+<p>Besides that you may want to use NACL module on native pillars:</p>
+</div>
+<div class="listingblock">
+<div class="title">mypillar.yml</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">pillarexample:
+    user: root
+    password1: {{salt.nacl.dec('DRB7Q6/X5gGSRCTpZyxS6hlbWj0llUA+uaVyvou3vJ4=')|json}}
+    cert_key: {{salt.nacl.dec_file('/srv/salt/env/dev/certs/example.com/cert.nacl')|json}}
+    cert_key2: {{salt.nacl.dec_file('salt:///certs/example.com/cert2.nacl')|json}}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_summary">Summary<a href="#_summary" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Finally a simple but robust solution for encrypted pillar values. (being said, well you can&#8217;t encrypt keys or whole pillars
+yml&#8217;s this way). For a serious enterprise level you still might have a need for external credential store to employ common
+security policies as key/password rotation, end-to-end, which these tools offer. Wort to mention that external pillars are quite familiar
+in Salt community so we should push hard to have features like SDB&#8217;s available for external pillars as well.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_other_resources">Other resources<a href="#_other_resources" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.saltstack.com/en/develop/ref/modules/all/salt.modules.nacl.html" class="bare">https://docs.saltstack.com/en/develop/ref/modules/all/salt.modules.nacl.html</a></p>
+</li>
+<li>
+<p><a href="https://docs.saltstack.com/en/develop/ref/runners/all/salt.runners.nacl.html" class="bare">https://docs.saltstack.com/en/develop/ref/runners/all/salt.runners.nacl.html</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnotedef_1">
+<a href="#_footnoteref_1">1</a>. Reclass - Recursive external node classifier for automation tools like Ansible, Puppet, and Salt.
+</div>
+</div>
+                <ul class="share-buttons">
+    <li>Share this article:</li>
+    <li>
+        <a class="icon-facebook-squared" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fapealive.net%2fpost%2f2017-09-salt-nacl-ext-pillar%2f" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook"></a>
+    </li>
+    <li>
+        <a class="icon-twitter" href="https://twitter.com/share?text=Salt%20NACL%20encryption%20for%20external%20pillars&amp;url=http%3a%2f%2fapealive.net%2fpost%2f2017-09-salt-nacl-ext-pillar%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Tweet this article"></a>
+    </li>
+    <li>
+        <a class="icon-gplus" href="https://plus.google.com/share?url=http%3a%2f%2fapealive.net%2fpost%2f2017-09-salt-nacl-ext-pillar%2f" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google&#43;"></a>
+    </li>
+    <li>
+        <a class="icon-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2fapealive.net%2fpost%2f2017-09-salt-nacl-ext-pillar%2f&title=Salt%20NACL%20encryption%20for%20external%20pillars" onclick="window.open(this.href, 'linkedin-share', 'width=600,height=494');return false;" title="Share on Linkedin"></a>
+    </li>
+</ul>
+
+            
+
+        </article>
+        
+            <div class="comments">
+                <h3>Comments</h3>
+                <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "apealive" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+        
+    </main>
+    <aside  class="author">
+
+  <a class="" href="http://apealive.net//about_petr" title="About Petr">
+   <img class="profile-image" src="http://apealive.net/img/profile-image.png" alt="Petr Michalec" />
+  </a>
+  <p class="name">by 
+  <strong>Petr Michalec</strong></p>
+  <p class="address">Brandys nad Labem - Stara Boleslav</p>
+  
+  <p class="link"></p>
+  <ul class="social">
+    
+<li><a href="//twitter.com/epcim" class="icon-twitter" target="_blank" title="Twitter"></a></li>
+
+
+
+<li><a href="//twitter.com/apealive_net" class="icon-twitter" target="_blank" title="Twitter @apealive_net"></a></li>
+
+
+
+<li><a href="//facebook.com/petr.michalec" class="icon-facebook" target="_blank" title="Facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//github.com/epcim" class="icon-github" target="_blank" title="Github"></a></li>
+
+
+
+<li><a href="//plus.google.com/+PetrMichalec-Prague" class="icon-gplus" target="_blank" title="Google+"></a></li>
+
+
+
+<li><a href="//delicious.com/epcim" class="icon-delicious" target="_blank" title="Delicious"></a></li>
+
+
+<li><a href="http://apealive.net/post/index.xml" class="icon-rss" target="_blank" title="RSS"></a></li>
+
+  </ul>
+  <br><br>
+  <center>
+      <a class="link" href="http://apealive.net//about" title="About">About</a>
+      |
+      <a class="link" href="http://apealive.net//photo" title="Photographs">Photographs</a>
+      |
+      <a class="link" href="http://apealive.net//tags" title="Tags">Tags</a>
+  </center>
+</aside>
+
+</div>
+
+
+<footer class="main-footer">
+  <div class="container clearfix">
+        <a class="icon-rss" href="http://apealive.net/post/index.xml" title="RSS"></a>
+        <p>&copy; 10127 &middot; &copy; APe, Powered by <a href="http://gohugo.io">Hugo</a>.</p>
+  </div>
+</footer>
+<script src="http://apealive.net/js/load-photoswipe.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js" integrity="sha256-UplRCs9v4KXVJvVY+p+RSo5Q4ilAUXh7kpjyIP5odyc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js" integrity="sha256-PWHOlUzc96pMc8ThwRIXPn8yH4NOLu42RQ0b9SpnpFk=" crossorigin="anonymous"></script>
+
+<script src="http://apealive.net/js/highlight.pack.js">
+<script src="http:\/\/apealive.net\/js/plugins.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+    <!-- Google Analytics -->
+    <script>
+      var _gaq=[['_setAccount','UA-71675144-1'],['_trackPageview']];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+
+
+</body>
+</html>
+
+

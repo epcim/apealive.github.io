@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Script on make me: APe</title>
+    <link>http://apealive.net/tags/script/</link>
+    <description>Recent content in Script on make me: APe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 06 Jun 2010 16:27:59 +0000</lastBuildDate>
+    
+	<atom:link href="http://apealive.net/tags/script/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Anki, sentence translation excercises</title>
+      <link>http://apealive.net/post/anki-sentence-translation-excercises/</link>
+      <pubDate>Sun, 06 Jun 2010 16:27:59 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/anki-sentence-translation-excercises/</guid>
+      <description>Summary I have managed to grab Questions and Answers from scanned PDF version of real grammar book and create an Anki deck from it. Although OCR was not perfect at all I was able to restore 50% of all exercises using some smart reg ex replacements in vim editor. Publishing final deck is not possible because of legal issues but I have decided to publish this how-to.
+ Update: I have decided to provide copy of the deck to anybody who will prove that is owner of the book.</description>
+    </item>
+    
+  </channel>
+</rss>

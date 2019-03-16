@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Containers on make me: APe</title>
+    <link>http://apealive.net/tags/containers/</link>
+    <description>Recent content in Containers on make me: APe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 03 Apr 2018 17:16:07 +0200</lastBuildDate>
+    
+	<atom:link href="http://apealive.net/tags/containers/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Brand new &#39;Salted&#39; containers</title>
+      <link>http://apealive.net/post/2018-04-salted-containers/</link>
+      <pubDate>Tue, 03 Apr 2018 17:16:07 +0200</pubDate>
+      
+      <guid>http://apealive.net/post/2018-04-salted-containers/</guid>
+      <description>TL;DR My matrix looks like:
+ invoke.yaml      Tools evaluated To solve the issue I wrote simple &#34;makefile&#34; specification with PyInvoke.
+  </description>
+    </item>
+    
+    <item>
+      <title>Image builds with DockerMake</title>
+      <link>http://apealive.net/post/2018-02-docker-make/</link>
+      <pubDate>Tue, 06 Mar 2018 15:01:07 +0200</pubDate>
+      
+      <guid>http://apealive.net/post/2018-02-docker-make/</guid>
+      <description>&lt;div class=&#34;paragraph lead&#34;&gt;
+&lt;p&gt;Dockerfile is nice, but it’s a puppet toy when it comes to scale. I am looking for
+a solution to consistently build many docker images with shared layers and consistent and predictable build workflow.&lt;/p&gt;
+&lt;/div&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

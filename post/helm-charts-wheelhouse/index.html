@@ -1,0 +1,843 @@
+
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>make me: APe</title>
+        <meta name="author">
+        <meta name="description" content="APe&#39;s blog ~ #family, #tech, #photography, #DevOps, #Cloud, #Chef, #RC planes">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="generator" content="Hugo 0.52" />
+        <link href="http://apealive.net/post/index.xml" rel="alternate" type="application/rss+xml" title="make me: APe" />
+        <link href="http://apealive.net/post/index.xml" rel="feed" type="application/rss+xml" title="make me: APe" />
+        <link href="https://fonts.googleapis.com/css?family=Droid+Sans|Encode+Sans+Condensed|Roboto|Roboto+Condensed" rel="stylesheet">
+        <link rel="stylesheet" href="http://apealive.net/css/styles.css">
+        
+        <link rel="stylesheet" href="http://apealive.net/css/asciidoctor.css">
+        
+        <link rel="stylesheet" href="http://apealive.net/css/apealive.css">
+        
+        <link rel="icon" href="http://apealive.net/favicon.ico">
+        <link rel="apple-touch-icon" href="http://apealive.net/apple-touch-icon.png" />
+        
+        <link rel="stylesheet" href="http://apealive.net/css/highlightjs/github.css">
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.0/modernizr.min.js"></script>
+        <script>
+            $('#expand').click(function(){
+               $(aside).toggle(400);
+               $(main).addClass('author-article-view');
+            });
+
+        </script>
+
+        <style>
+        .site-header h2 .logo {
+        background: url(http://apealive.net/img/ZenBG.png) repeat 0 0;
+        }
+        @media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6 / 2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
+          .site-header h2 .logo {
+            background-image: url(http://apealive.net/img/ZenBG.png);
+        }}
+       .site-header {
+         background: #2a373d url(http://apealive.net/img/ZenBG.png) repeat center center;
+         z-index: -1;
+        }
+        </style>
+    </head>
+
+    <body>
+        
+
+        <header class="site-header">
+          <div class="transparent-layer">
+              <h2>
+                  make me : APe
+              </h2>
+          </div>
+
+        
+          
+              
+              
+              
+              
+         
+         
+
+        </header>
+        <div class="author" >
+          <ul class="social" >
+            
+<li><a href="//twitter.com/epcim" class="icon-twitter" target="_blank" title="Twitter"></a></li>
+
+
+
+<li><a href="//twitter.com/apealive_net" class="icon-twitter" target="_blank" title="Twitter @apealive_net"></a></li>
+
+
+
+<li><a href="//facebook.com/petr.michalec" class="icon-facebook" target="_blank" title="Facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//github.com/epcim" class="icon-github" target="_blank" title="Github"></a></li>
+
+
+
+<li><a href="//plus.google.com/+PetrMichalec-Prague" class="icon-gplus" target="_blank" title="Google+"></a></li>
+
+
+
+<li><a href="//delicious.com/epcim" class="icon-delicious" target="_blank" title="Delicious"></a></li>
+
+
+<li><a href="http://apealive.net/post/index.xml" class="icon-rss" target="_blank" title="RSS"></a></li>
+
+          </ul>
+        </div>
+
+
+<div class="container clearfix">
+    <main role="main" class="content expand">
+        <article class="post">
+            <a class="btn" href="http://apealive.net/" title="Back to home">&laquo; Back to home</a>
+            
+<h1><a href="http://apealive.net/post/helm-charts-wheelhouse/" title="Salt water to Helm Chart&#39;s wheel">Salt water to Helm Chart&#39;s wheel</a></h1>
+
+<footer class="post-info">
+
+&middot; Tagged in
+    
+    <a href="http://apealive.net/tags/blog">blog</a>
+    , 
+    
+    <a href="http://apealive.net/tags/kubernetes">kubernetes</a>
+    , 
+    
+    <a href="http://apealive.net/tags/helm">helm</a>
+    , 
+    
+    <a href="http://apealive.net/tags/chart">chart</a>
+    , 
+    
+    <a href="http://apealive.net/tags/wheelhouse">wheelhouse</a>
+    , 
+    
+    <a href="http://apealive.net/tags/k8s">k8s</a>
+    
+    
+
+
+    </br>
+    Read in 8 min.
+
+
+</span>
+</footer>
+<div class="paragraph lead">
+<p>Flexible way to perform configuration management actions in the Helm chart&#8217;s.</p>
+</div>
+<div class="paragraph">
+<p>We uses years Salt, Chef, Ansible, &#8230;&#8203; to do complex configuration steps, but when it came
+to implement a new feature in Helm Chart app folks once again tend to fall back to bash, curl
+and the Helm hell templates.</p>
+</div>
+<div class="sect1">
+<h2 id="_tldr">TL;DR<a href="#_tldr" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>My use-case is simple. I want to update <a href="https://github.com/Mirantis/k8s-apps/tree/master/charts/influxdb">Influxdb chart</a>.
+and provide way to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>create database</p>
+</li>
+<li>
+<p>configure users</p>
+</li>
+<li>
+<p>access right&#8217;s</p>
+</li>
+<li>
+<p>continuous_queries</p>
+</li>
+<li>
+<p>retention policies</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Quite common stuff when using influxdb. Additionally any lifecycle will need scheduled cron job to prune data etc. which
+is nothing else then kind of <code>query</code> to the backend.</p>
+</div>
+<div class="paragraph">
+<p>Common use-case, but what a surprise the Chart did not had these implemented. Not even upstream one.
+(well google upstream has users + rights but still I was not satisfied.)</p>
+</div>
+<div class="paragraph">
+<p>Wait, in general these and similar functions we already implemented under "Salt/Chef" tools years ago.
+miss as well. There must be a huge gap in functions available in what other charts as well.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_problem">Problem<a href="#_problem" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>First understand the facts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Containers are good for isolation, high density, &#8230;&#8203;</p>
+</li>
+<li>
+<p>Docker runtime is good for standardized interface to containers</p>
+</li>
+<li>
+<p>Kubernetes is fitted for running large scale clustered production</p>
+</li>
+<li>
+<p>Helm is good for packaging and release management of the k8s apps</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>None of the above is know good for configuration management. And even they do declarative, atomic and reusable.
+They fail to be imperative when executing interaction and enforcing required state.</p>
+</div>
+<div class="paragraph">
+<p>What I propose is to standardize bit a way we do "things" in the charts. And for carefull reader, the article is also about
+standardization of the metadata that are used to configure chart, cookbook, formula and what ever will come next.</p>
+</div>
+<div class="paragraph">
+<p>Obviously we can recognise these kind of tasks:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Server side application configuration, templates, system setup</p>
+</li>
+<li>
+<p>Client side executions, api calls</p>
+</li>
+<li>
+<p>Other maintenance procedures</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>And you probably wish to integrate with external resources as well.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>write your actions declarative way rather than <code>bash+curl</code>, for example checking whether to <code>CREATE</code> or <code>ALTER</code> you may use
+<code>influxdb_continuous_query.present</code> state with an easy syntax prone errors.</p>
+</li>
+<li>
+<p>get and use realt-time setup from external systems (Vault, etcd, &#8230;&#8203;.) (not just what you have in configMap)</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_how_the_integration_could_work">How the integration could work?<a href="#_how_the_integration_could_work" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h3>
+<div class="ulist">
+<ul>
+<li>
+<p>a side container to execute client side calls (like API)</p>
+</li>
+<li>
+<p>extend you application image with the config layer (example: Salt + desired formulas).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In the chart:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>load configMap configuration files from formulas/cookbooks rather then from chart</p>
+</li>
+<li>
+<p>use in-build features of side-container configuration management tool to execute actions</p>
+</li>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The first point will be even more clear if you will have a look how we treat "client"
+<a href="https://salt-formulas.readthedocs.io/en/latest/intro/metadata-patterns.html#service-formula-roles">roles</a> in the
+<a href="https://github.com/salt-formulas">salt-formulas</a> project. This is usually worth during chart <code>post-init,post-upgrade</code> hook jobs and
+cronjobs.</p>
+</div>
+<div class="paragraph">
+<p>The second may help provide some help while configuring the application. To be clear, we are not interested in replacing
+existing chart app templates written in gotpl or fully reuse the existing features of 3rd party configuration management.</p>
+</div>
+<div class="paragraph">
+<p>What I am looking instead is simplification of small common tasks like system configuration, checks, ops in declarative way.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_wheelhouse">Wheelhouse<a href="#_wheelhouse" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>So what is the way that don&#8217;t reinvent the wheel?</p>
+</div>
+<div class="paragraph">
+<p>I propose extend <code>values.yaml</code> with simple structure like this:</p>
+</div>
+<div class="listingblock">
+<div class="title">values.yaml</div>
+<div class="content">
+<pre class="highlight"><code class="language-YAML" data-lang="YAML"># Invoking external configuration management tools to provide a particular feature set
+wheelhouse:
+  engine: salt
+  image:  tcpcloud/salt-formulas:latest
+
+  # Shared metadata, pillars, variables, attributes, data_bag
+  pillar: {}
+
+  # Listing of individual actions
+  wheel:
+    dummy_job_name: {}
+      # Free structure to compose execution logic that fit the engine used.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I provide simple implementation of <code>job-initdb.yaml</code> that uses this structure to setup influxdb database
+and it&#8217;s configuration.</p>
+</div>
+<div class="sect2">
+<h3 id="_engine">Engine<a href="#_engine" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h3>
+<div class="paragraph">
+<p>My "DevOps kung-fu" has Salt taste, so in the examples below I will use SaltStack Salt as configuration management.</p>
+</div>
+<div class="paragraph">
+<p>In order to make the Helm Chart code even shorter, I pass whole <code>wheelhouse</code> yaml structure to
+<a href="https://github.com/epcim/wheelhouse/blob/master/wheelhouse.py">wheelhouse.py</a> that implements
+necessary loops and Salt client calls.</p>
+</div>
+<div class="paragraph">
+<p>At the end the only required logic to execute it, takes just a four lines of code. (An cherry-pic of 'init' job that will run
+all 'wheels' specified.)</p>
+</div>
+<div class="listingblock">
+<div class="title">job-initdb.yaml</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">      containers:
+      - name: influx-wheel-job-{{ $job_name }}
+        image: {{ .Values.image }}
+        volumeMounts:
+        - name: wheelhouse-salt
+          mountPath: /wh
+        env:
+         - name: PYTHONPATH
+           value: /wh:$PYTHONPATH
+         - name: INFLUXDB_HOST
+           value: {{ template "influx-fullname" $ }}
+        command:
+          - "bash"
+          - "-cx"
+        args:
+          - |
+            /usr/bin/python &lt;&lt;-EOF
+            import os
+            import ruamel.yaml
+            from string import Template
+            import wheelhouse
+
+            config = ruamel.yaml.YAML().load(Template('''\
+{{ toYaml $wh |indent 15 }}
+            ''').substitute(os.environ))
+
+            recipe = ['initdb']
+            wheelhouse.SaltWheel(config, recipe=recipe).runner()
+            EOF</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_image">Image<a href="#_image" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h3>
+<div class="paragraph">
+<p>The image I use for container is multipurpose ubuntu + our salt-formulas compilation:
+<a href="https://hub.docker.com/r/tcpcloud/salt-formulas/" class="bare">https://hub.docker.com/r/tcpcloud/salt-formulas/</a></p>
+</div>
+<div class="paragraph">
+<p>For any serious work I would consider make it much smaller and possibly use some features of
+<a href="https://github.com/akatrevorjay/salty-whales" class="bare">https://github.com/akatrevorjay/salty-whales</a> which I tend to use for Salt formula testing.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pillar">Pillar<a href="#_pillar" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h3>
+<div class="paragraph">
+<p>Quite sure, if you will use Salt engine you will want to structure your chart pillar the exactly same way as you structure
+your metadata for salt formulas. This step will help to standardize metadata structure cross your environment.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Literary we have failed in metadata management. Chef, Ansible, Salt, Habitat have different metadata structure.
+      That&#8217;s not bad, that&#8217;s how inventions comes. Pain in the ass infact is that if we started write helm chart&#8217;s we
+      ignored these metadata at all and started to structure chart <code>values.yaml</code> once again from scratch without any
+      standardization or validation schema.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Hmm, it&#8217;s an side topic. The above actually is not true for the <a href="https://github.com/salt-formulas">salt-formulas</a> project.
+The <code>metadata</code> structure are the first place and even note everything is perfect recent features we added move us forward.
+First of all, we keep separated metadata for roles <code>client</code>, <code>server</code>. We isolate <code>service</code> related metadat to <code>system</code>
+related. And for the sake of the thing we also keep the deployment level overrides, that we call <code>cluster</code>.</p>
+</div>
+<div class="paragraph">
+<p>Links:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/Mirantis/reclass-system-salt-model">system-level</a> shared metadata (production ready) <strong>!!</strong></p>
+</li>
+<li>
+<p><a href="https://github.com/salt-formulas/salt-formula-salt/tree/master/metadata/service">service-level</a> metadata</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For my use-case the pillar structure is 1:1 what my influxdb <a href="https://github.com/salt-formulas/salt-formula-influxdb">formula</a>
+needs to setup database an configure.</p>
+</div>
+<div class="listingblock">
+<div class="title">values.yaml</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">  wheelhouse:
+    pillar:
+      influxdb:
+        client:
+          enabled: true
+          server:
+            protocol: http
+            host: $INFLUXDB_HOST
+            port: 8086
+            user: admin
+            password: password
+          user:
+            fluentd:
+              name: fluentd
+              password: password
+              enabled: true
+          database:
+              1:
+                name: new_year
+                enabled: true
+                retention_policy:
+                  - name: a_year
+                    duration: 52w
+                    replication: 1
+                    is_default: true</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_wheel_and_jobs_sections">Wheel and Jobs sections.<a href="#_wheel_and_jobs_sections" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h3>
+<div class="paragraph">
+<p>Wheel section in the <code>wheelhouse:wheel</code> structure is "free of choice" that fit&#8217;s the engine used. While it must keep
+this minimal schema:</p>
+</div>
+<div class="listingblock">
+<div class="title">values.yaml</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">    wheelhouse:
+        wheel:
+          &lt;wheel_name&gt;: {}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And for salt it&#8217;s I extend:</p>
+</div>
+<div class="listingblock">
+<div class="title">values.yaml</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">    wheelhouse:
+        wheel:
+          &lt;wheel_name&gt;:
+             &lt;state|module function&gt;:
+                - &lt;args&gt;
+             ...
+             state.apply:
+                &lt; raw sls file written in yaml &gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The Job section on the other hand is to associate individual <code>wheel</code> to unit&#8217;s that you wish to execute, as for example part
+of the <code>job-initdb.yml</code> post-install container. As we tent to keep wheels simple, the <code>job</code> holds the additional metadata.</p>
+</div>
+<div class="listingblock">
+<div class="title">values.yaml</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">    wheelhouse:
+      job:
+        &lt;job_name&gt;:
+          recipe:
+            - &lt;wheel_name&gt;
+            - &lt;wheel_name2&gt;
+          logging:
+            severity: info</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+I still bit fight with this jobs structure as I don&#8217;t fully accept it as it looks like today. But that&#8217;s the purpose of
+      this article, PoC and start an discussion for a best reusable structure.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Again, for Salt may imagine to extend that for example as:</p>
+</div>
+<div class="listingblock">
+<div class="title">values.yaml</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">    wheelhouse:
+      job:
+        &lt;job_name&gt;:
+          config:
+            salt:
+              minion: {}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_full_example">Full example<a href="#_full_example" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">values.yaml</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">  wheelhouse:
+    enabled: true
+    engine: salt
+    image:  tcpcloud/salt-formulas
+    # Individual task specification
+    job:
+      initdb:
+        wheel:
+          - client
+        logging:
+          severity: debug
+      cronjob:
+        wheel:
+          - minion_influxdb_config
+          - prune_measurement
+
+    pillar:
+      influxdb:
+        client:
+          enabled: true
+          server:
+            protocol: http
+            host: $INFLUXDB_HOST
+            port: 8086
+            user: admin
+            password: password
+          user:
+            fluentd:
+              name: fluentd
+              password: password
+              enabled: true
+          database:
+              initialdb:
+                enabled: true
+                name: initialdb
+                retention_policy:
+                  - name: a_year
+                    duration: 52w
+                    replication: 1
+                    is_default: true
+                query:
+                  delete_h2o_quality_rt3: &gt;-
+                    DELETE FROM "h2o_quality" WHERE "randtag" = '3'
+      # This section is only needed if I want to use influx module/state directly
+      salt:
+        minion:
+            config:
+              influxdb:
+                host: localhost
+                port: 8086
+
+    wheel:
+      client:
+        state.apply:
+          - influxdb.client
+      prune_measurement:
+        state.sls_id:
+          - delete_h2o_quality_rt3
+          - influxdb.query
+      minion_influxdb_config:
+        state.apply:
+          /etc/salt/minion:
+            file.serialize:
+            - dataset_pillar:  salt:minion:config
+            - formatter:       yaml
+            - merge_if_exists: True
+            - makedirs: True</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, my use-case is actually already satisfied by this snippet you may find in the above example:</p>
+</div>
+<div class="listingblock">
+<div class="title">values.yaml</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">    wheel:
+      client:
+        state.apply:
+          - influxdb.client</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Which when called over job "init", does exactly what I specified on <code>wheelhouse:pillar:influxdb:client</code>.</p>
+</div>
+<div class="paragraph">
+<p>I have my full PR to influxdb chart here: <a href="https://github.com/Mirantis/k8s-apps/pull/12" class="bare">https://github.com/Mirantis/k8s-apps/pull/12</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_testing_make_your_hands_dirty">Testing &amp;&amp; make your hands dirty<a href="#_testing_make_your_hands_dirty" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The external configuration management, state and it&#8217;s pillar structures can be easily tested by:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">  git clone https://github.com/epcim/wheelhouse
+  docker run -v $PWD/wheelhouse:/wheelhouse -ti tcpcloud/salt-formulas:latest /bin/bash
+  /wheelhouse/wheelhouse.py</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_summary">Summary<a href="#_summary" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We have spend years by tuning configuration management tools.
+So if you were working hard they have now state of art:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>templates</p>
+</li>
+<li>
+<p>metadata structures</p>
+</li>
+<li>
+<p>functions</p>
+</li>
+<li>
+<p>integrations</p>
+</li>
+<li>
+<p>tests</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>While on-boarding an K8s word we were never expected to throw away this "golden egg" and start from scratch. I don&#8217;t say
+upstream charts are wrong or ugly. I don&#8217;t blame gotpl and Helm at all.</p>
+</div>
+<div class="paragraph">
+<p>I am disappointed if I see application configs as "templates" smashed in <code>deployment/configmap.yaml</code>. Sure it has some
+good reasoning but I would frequently rather provide core metadata in <code>values.yaml</code> and render the template I use for 80%
+of my other environments.</p>
+</div>
+<div class="paragraph">
+<p>What the hell, we did defined helm chart <code>.Values</code> structures from scratch even we have had quite good examples in
+Chef and SaltStack, Salt-Formulas, Ansible metadata/attributes structures.</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s pain to see <code>gotpl</code> without many common things implemented and lacking the flexibility of Erb or Jinja.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+We can&#8217;t quickly rewrite all charts. But we can slowly start using <code>wheelhouse</code> structure on values to do things the
+      "standardized" way.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Any comments and ideas are warmly welcome!</p>
+</div>
+</div>
+</div>
+                <ul class="share-buttons">
+    <li>Share this article:</li>
+    <li>
+        <a class="icon-facebook-squared" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fapealive.net%2fpost%2fhelm-charts-wheelhouse%2f" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook"></a>
+    </li>
+    <li>
+        <a class="icon-twitter" href="https://twitter.com/share?text=Salt%20water%20to%20Helm%20Chart%27s%20wheel&amp;url=http%3a%2f%2fapealive.net%2fpost%2fhelm-charts-wheelhouse%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Tweet this article"></a>
+    </li>
+    <li>
+        <a class="icon-gplus" href="https://plus.google.com/share?url=http%3a%2f%2fapealive.net%2fpost%2fhelm-charts-wheelhouse%2f" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google&#43;"></a>
+    </li>
+    <li>
+        <a class="icon-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2fapealive.net%2fpost%2fhelm-charts-wheelhouse%2f&title=Salt%20water%20to%20Helm%20Chart%27s%20wheel" onclick="window.open(this.href, 'linkedin-share', 'width=600,height=494');return false;" title="Share on Linkedin"></a>
+    </li>
+</ul>
+
+            
+
+        </article>
+        
+            <div class="comments">
+                <h3>Comments</h3>
+                <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "apealive" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+        
+    </main>
+    <aside  class="author">
+
+  <a class="" href="http://apealive.net//about_petr" title="About Petr">
+   <img class="profile-image" src="http://apealive.net/img/profile-image.png" alt="Petr Michalec" />
+  </a>
+  <p class="name">by 
+  <strong>Petr Michalec</strong></p>
+  <p class="address">Brandys nad Labem - Stara Boleslav</p>
+  
+  <p class="link"></p>
+  <ul class="social">
+    
+<li><a href="//twitter.com/epcim" class="icon-twitter" target="_blank" title="Twitter"></a></li>
+
+
+
+<li><a href="//twitter.com/apealive_net" class="icon-twitter" target="_blank" title="Twitter @apealive_net"></a></li>
+
+
+
+<li><a href="//facebook.com/petr.michalec" class="icon-facebook" target="_blank" title="Facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//github.com/epcim" class="icon-github" target="_blank" title="Github"></a></li>
+
+
+
+<li><a href="//plus.google.com/+PetrMichalec-Prague" class="icon-gplus" target="_blank" title="Google+"></a></li>
+
+
+
+<li><a href="//delicious.com/epcim" class="icon-delicious" target="_blank" title="Delicious"></a></li>
+
+
+<li><a href="http://apealive.net/post/index.xml" class="icon-rss" target="_blank" title="RSS"></a></li>
+
+  </ul>
+  <br><br>
+  <center>
+      <a class="link" href="http://apealive.net//about" title="About">About</a>
+      |
+      <a class="link" href="http://apealive.net//photo" title="Photographs">Photographs</a>
+      |
+      <a class="link" href="http://apealive.net//tags" title="Tags">Tags</a>
+  </center>
+</aside>
+
+</div>
+
+
+<footer class="main-footer">
+  <div class="container clearfix">
+        <a class="icon-rss" href="http://apealive.net/post/index.xml" title="RSS"></a>
+        <p>&copy; 10127 &middot; &copy; APe, Powered by <a href="http://gohugo.io">Hugo</a>.</p>
+  </div>
+</footer>
+<script src="http://apealive.net/js/load-photoswipe.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js" integrity="sha256-UplRCs9v4KXVJvVY+p+RSo5Q4ilAUXh7kpjyIP5odyc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js" integrity="sha256-PWHOlUzc96pMc8ThwRIXPn8yH4NOLu42RQ0b9SpnpFk=" crossorigin="anonymous"></script>
+
+<script src="http://apealive.net/js/highlight.pack.js">
+<script src="http:\/\/apealive.net\/js/plugins.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+    <!-- Google Analytics -->
+    <script>
+      var _gaq=[['_setAccount','UA-71675144-1'],['_trackPageview']];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+
+
+</body>
+</html>
+
+

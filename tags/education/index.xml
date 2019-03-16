@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Education on make me: APe</title>
+    <link>http://apealive.net/tags/education/</link>
+    <description>Recent content in Education on make me: APe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 01 Dec 2009 09:22:14 +0000</lastBuildDate>
+    
+	<atom:link href="http://apealive.net/tags/education/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>procabrit mozek II</title>
+      <link>http://apealive.net/post/procabrit-mozek-ii/</link>
+      <pubDate>Tue, 01 Dec 2009 09:22:14 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/procabrit-mozek-ii/</guid>
+      <description>Je to nějakou dobu co jsem se zaměřil na výběr aplikace co by mi opět pomohl zapomenout zapomínat.
+Tenhle post jsem připravil jako návod pro všechny kamarády, kdo budou mít zájem se do toho taky pustit.
+Tak před deseti lety jsem si pořídil [1]_ sw Supermemo na učení anglických slovíček. Nutno dodat, že v tomhle oboru mám jen ty nejlepší zkušenosti. Za rok a půl jsem natřískal do hlavy přes 4000 slovíček.</description>
+    </item>
+    
+    <item>
+      <title>Pročabřit mozek</title>
+      <link>http://apealive.net/post/procabrit-mozek/</link>
+      <pubDate>Fri, 10 Apr 2009 15:44:01 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/procabrit-mozek/</guid>
+      <description>&amp;nbsp;
+Zn&amp;aacute;te to, občas je dobr&amp;eacute; si nějak&amp;aacute; slov&amp;iacute;čka zopakovat.
+Hledal jsem nějak&amp;yacute; pěkn&amp;yacute; opensource co by mi vynahradil dnes už poněkud zastaral&amp;eacute; a v linuxu nepodporovan&amp;eacute; Supermemo . No a na&amp;scaron;el jsem minim&amp;aacute;lně dva pěkn&amp;eacute; kousky. Tak za t&amp;yacute;den se poděl&amp;iacute;m o zku&amp;scaron;enosti, teď mě ček&amp;aacute; konverze znalostn&amp;iacute; datab&amp;aacute;ze supermemo2004 do Q&amp;amp;A form&amp;aacute;tu co schroustaj&amp;iacute; ty prvn&amp;iacute; dva.
+
+Anki  - http://ichi2.net/anki/index.html
+Pěkn&amp;yacute;, podporuje mobiln&amp;iacute; klienty pro iPhone a Android, akor&amp;aacute;t vy&amp;scaron;la nov&amp;aacute; verze, datab&amp;aacute;ze se daj&amp;iacute; stahovat a sd&amp;iacute;let na internetu, online verze.</description>
+    </item>
+    
+  </channel>
+</rss>

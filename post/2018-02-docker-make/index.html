@@ -1,0 +1,437 @@
+
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>make me: APe</title>
+        <meta name="author">
+        <meta name="description" content="APe&#39;s blog ~ #family, #tech, #photography, #DevOps, #Cloud, #Chef, #RC planes">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="generator" content="Hugo 0.52" />
+        <link href="http://apealive.net/post/index.xml" rel="alternate" type="application/rss+xml" title="make me: APe" />
+        <link href="http://apealive.net/post/index.xml" rel="feed" type="application/rss+xml" title="make me: APe" />
+        <link href="https://fonts.googleapis.com/css?family=Droid+Sans|Encode+Sans+Condensed|Roboto|Roboto+Condensed" rel="stylesheet">
+        <link rel="stylesheet" href="http://apealive.net/css/styles.css">
+        
+        <link rel="stylesheet" href="http://apealive.net/css/asciidoctor.css">
+        
+        <link rel="stylesheet" href="http://apealive.net/css/apealive.css">
+        
+        <link rel="icon" href="http://apealive.net/favicon.ico">
+        <link rel="apple-touch-icon" href="http://apealive.net/apple-touch-icon.png" />
+        
+        <link rel="stylesheet" href="http://apealive.net/css/highlightjs/github.css">
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.0/modernizr.min.js"></script>
+        <script>
+            $('#expand').click(function(){
+               $(aside).toggle(400);
+               $(main).addClass('author-article-view');
+            });
+
+        </script>
+
+        <style>
+        .site-header h2 .logo {
+        background: url(http://apealive.net/img/ZenBG.png) repeat 0 0;
+        }
+        @media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6 / 2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
+          .site-header h2 .logo {
+            background-image: url(http://apealive.net/img/ZenBG.png);
+        }}
+       .site-header {
+         background: #2a373d url(http://apealive.net/img/ZenBG.png) repeat center center;
+         z-index: -1;
+        }
+        </style>
+    </head>
+
+    <body>
+        
+
+        <header class="site-header">
+          <div class="transparent-layer">
+              <h2>
+                  make me : APe
+              </h2>
+          </div>
+
+        
+          
+              
+              
+              
+              
+         
+         
+
+        </header>
+        <div class="author" >
+          <ul class="social" >
+            
+<li><a href="//twitter.com/epcim" class="icon-twitter" target="_blank" title="Twitter"></a></li>
+
+
+
+<li><a href="//twitter.com/apealive_net" class="icon-twitter" target="_blank" title="Twitter @apealive_net"></a></li>
+
+
+
+<li><a href="//facebook.com/petr.michalec" class="icon-facebook" target="_blank" title="Facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//github.com/epcim" class="icon-github" target="_blank" title="Github"></a></li>
+
+
+
+<li><a href="//plus.google.com/+PetrMichalec-Prague" class="icon-gplus" target="_blank" title="Google+"></a></li>
+
+
+
+<li><a href="//delicious.com/epcim" class="icon-delicious" target="_blank" title="Delicious"></a></li>
+
+
+<li><a href="http://apealive.net/post/index.xml" class="icon-rss" target="_blank" title="RSS"></a></li>
+
+          </ul>
+        </div>
+
+
+<div class="container clearfix">
+    <main role="main" class="content expand">
+        <article class="post">
+            <a class="btn" href="http://apealive.net/" title="Back to home">&laquo; Back to home</a>
+            
+<h1><a href="http://apealive.net/post/2018-02-docker-make/" title="Image builds with DockerMake">Image builds with DockerMake</a></h1>
+
+<footer class="post-info">
+
+&middot; Tagged in
+    
+    <a href="http://apealive.net/tags/docker">docker</a>
+    , 
+    
+    <a href="http://apealive.net/tags/containers">containers</a>
+    , 
+    
+    <a href="http://apealive.net/tags/make">make</a>
+    , 
+    
+    <a href="http://apealive.net/tags/invoke">invoke</a>
+    
+    
+
+
+    </br>
+    Read in 2 min.
+
+
+</span>
+</footer>
+<div class="paragraph lead">
+<p>Dockerfile is nice, but it’s a puppet toy when it comes to scale. I am looking for
+a solution to consistently build many docker images with shared layers and consistent and predictable build workflow.</p>
+</div>
+<div class="sect1">
+<h2 id="_tldr">TL;DR<a href="#_tldr" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>My use-case is simple. I want to build matrix of docker images for kitchen-salt CI, containerized
+Salt-Master and bare-bone OS boilerplates. With Salt, salt formulas installed or without it at all.
+That makes more than 60 image versions.</p>
+</div>
+<div class="paragraph">
+<p>My matrix looks like:</p>
+</div>
+<div class="listingblock">
+<div class="title">invoke.yaml</div>
+<div class="content">
+<pre class="highlight"><code class="language-YAML" data-lang="YAML">matrix:
+  dist:
+    ubuntu:
+    - trusty
+    - xenial
+    - bionic
+    debian:
+    - stretch
+    centos:
+    - 7
+  salt:
+    - stable
+    - stable 2016.3
+    - stable 2017.7
+    - develop
+  salt-formulas:
+    - stable
+    - nightly</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tools_evaluated">Tools evaluated<a href="#_tools_evaluated" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I did a simple search and found couple of tools that made me interested</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/avirshup/DockerMake">DockerMake</a> (winner)</p>
+</li>
+<li>
+<p><a href="https://cloud.google.com/container-builder/docs">google builder</a></p>
+</li>
+<li>
+<p><a href="https://github.com/grammarly/rocker">Rocker</a></p>
+</li>
+<li>
+<p><a href="https://github.com/mvanholsteijn/docker-makefile">docker-makefile</a></p>
+</li>
+<li>
+<p><a href="https://windsock.io/automated-docker-image-builds-with-multiple-tags/" class="bare">https://windsock.io/automated-docker-image-builds-with-multiple-tags/</a></p>
+</li>
+<li>
+<p><a href="https://objectpartners.com/2017/09/20/docker-parameterized-builds-using-git-tags-part-1-of-2/" class="bare">https://objectpartners.com/2017/09/20/docker-parameterized-builds-using-git-tags-part-1-of-2/</a></p>
+</li>
+<li>
+<p>RedHat build tools</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dockermake">DockerMake<a href="#_dockermake" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I choosed <a href="https://github.com/avirshup/DockerMake">DockerMake</a> as it is:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>lite</p>
+</li>
+<li>
+<p>flexible enough</p>
+</li>
+<li>
+<p>logic/isolated/layers</p>
+</li>
+<li>
+<p>active in development</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>How it works you may find out from the following snippet.</p>
+</div>
+<div class="listingblock">
+<div class="title">DockerMake.yaml</div>
+<div class="content">
+<pre class="highlight"><code class="language-YAML" data-lang="YAML">    [first_image_name]:
+      FROM: [named_base_image]
+      build: |
+        RUN [something]
+        ADD [something else]
+        [Dockerfile commands go here]
+    [another_image_name]:
+     requires:
+       - [first_image_name]
+     build: |
+       [additional Dockerfile instructions]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For all features check <code>avirshup</code> repo or my final implementation for
+<a href="https://github.com/epcim/docker-salt-formulas/blob/master/DockerMake.yml">docker-salt-formulas</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_extend_with_makefile_with_pyinvoke">Extend with "makefile" with PyInvoke<a href="#_extend_with_makefile_with_pyinvoke" class="hanchor" ariaLabel="Anchor"> 🔗&#xFE0E;</a> </h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>DockerMake is worth to indepotently declare individual layers. However if used standalone bit fails
+to use key/args in layer, image, variable names.</p>
+</div>
+<div class="paragraph">
+<p>To solve the issue I wrote simple "makefile" specification with <a href="https://github.com/pyinvoke/invoke">PyInvoke</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    tasks.py     # Script to write tasks for pyinvoke
+    invoke.yaml  # Configuration file (optional)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally to build images or list individual targets I run these options:</p>
+</div>
+<div class="listingblock">
+<div class="title">usage.sh</div>
+<div class="content">
+<pre class="highlight"><code class="language-BASH" data-lang="BASH">    inv --list
+    inv all --dry
+    inv all --dry-targets
+
+    # build whole matrix
+    inv all --push
+    inv all --push -w    # warnings only: to survive on errors
+
+    # individual targets
+    # invoke [target] [--[args][=value]] [--push]
+    invoke all --dry-targets --filter "{'target':'saltstack', 'salt': 'stable'}"
+    invoke build wheelhouse --require "salt salt-formulas wheel" \
+      --dist=debian --dist-rel=stretch \
+      --salt=develop --formula-rev=nightly \
+      --push</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Good enough?</p>
+</div>
+</div>
+</div>
+                <ul class="share-buttons">
+    <li>Share this article:</li>
+    <li>
+        <a class="icon-facebook-squared" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fapealive.net%2fpost%2f2018-02-docker-make%2f" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook"></a>
+    </li>
+    <li>
+        <a class="icon-twitter" href="https://twitter.com/share?text=Image%20builds%20with%20DockerMake&amp;url=http%3a%2f%2fapealive.net%2fpost%2f2018-02-docker-make%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Tweet this article"></a>
+    </li>
+    <li>
+        <a class="icon-gplus" href="https://plus.google.com/share?url=http%3a%2f%2fapealive.net%2fpost%2f2018-02-docker-make%2f" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google&#43;"></a>
+    </li>
+    <li>
+        <a class="icon-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3a%2f%2fapealive.net%2fpost%2f2018-02-docker-make%2f&title=Image%20builds%20with%20DockerMake" onclick="window.open(this.href, 'linkedin-share', 'width=600,height=494');return false;" title="Share on Linkedin"></a>
+    </li>
+</ul>
+
+            
+
+        </article>
+        
+            <div class="comments">
+                <h3>Comments</h3>
+                <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "apealive" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+        
+    </main>
+    <aside  class="author">
+
+  <a class="" href="http://apealive.net//about_petr" title="About Petr">
+   <img class="profile-image" src="http://apealive.net/img/profile-image.png" alt="Petr Michalec" />
+  </a>
+  <p class="name">by 
+  <strong>Petr Michalec</strong></p>
+  <p class="address">Brandys nad Labem - Stara Boleslav</p>
+  
+  <p class="link"></p>
+  <ul class="social">
+    
+<li><a href="//twitter.com/epcim" class="icon-twitter" target="_blank" title="Twitter"></a></li>
+
+
+
+<li><a href="//twitter.com/apealive_net" class="icon-twitter" target="_blank" title="Twitter @apealive_net"></a></li>
+
+
+
+<li><a href="//facebook.com/petr.michalec" class="icon-facebook" target="_blank" title="Facebook"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//github.com/epcim" class="icon-github" target="_blank" title="Github"></a></li>
+
+
+
+<li><a href="//plus.google.com/+PetrMichalec-Prague" class="icon-gplus" target="_blank" title="Google+"></a></li>
+
+
+
+<li><a href="//delicious.com/epcim" class="icon-delicious" target="_blank" title="Delicious"></a></li>
+
+
+<li><a href="http://apealive.net/post/index.xml" class="icon-rss" target="_blank" title="RSS"></a></li>
+
+  </ul>
+  <br><br>
+  <center>
+      <a class="link" href="http://apealive.net//about" title="About">About</a>
+      |
+      <a class="link" href="http://apealive.net//photo" title="Photographs">Photographs</a>
+      |
+      <a class="link" href="http://apealive.net//tags" title="Tags">Tags</a>
+  </center>
+</aside>
+
+</div>
+
+
+<footer class="main-footer">
+  <div class="container clearfix">
+        <a class="icon-rss" href="http://apealive.net/post/index.xml" title="RSS"></a>
+        <p>&copy; 10127 &middot; &copy; APe, Powered by <a href="http://gohugo.io">Hugo</a>.</p>
+  </div>
+</footer>
+<script src="http://apealive.net/js/load-photoswipe.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js" integrity="sha256-UplRCs9v4KXVJvVY+p+RSo5Q4ilAUXh7kpjyIP5odyc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js" integrity="sha256-PWHOlUzc96pMc8ThwRIXPn8yH4NOLu42RQ0b9SpnpFk=" crossorigin="anonymous"></script>
+
+<script src="http://apealive.net/js/highlight.pack.js">
+<script src="http:\/\/apealive.net\/js/plugins.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+    <!-- Google Analytics -->
+    <script>
+      var _gaq=[['_setAccount','UA-71675144-1'],['_trackPageview']];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+
+
+</body>
+</html>
+
+

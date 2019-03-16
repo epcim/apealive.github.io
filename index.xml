@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>make me: APe</title>
+    <link>http://apealive.net/</link>
+    <description>Recent content on make me: APe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 05 Dec 2018 10:28:19 +0200</lastBuildDate>
+    
+	<atom:link href="http://apealive.net/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Who am I?</title>
+      <link>http://apealive.net/about_petr/</link>
+      <pubDate>Wed, 05 Dec 2018 10:28:19 +0200</pubDate>
+      
+      <guid>http://apealive.net/about_petr/</guid>
+      <description>Petr Michalec An Architect, Developer. ExIBMer. Vi(m) lover. DevOps and OpenSource devoted. Performing cloud infrastructure and application architecture with passion for the edge thing. If you wanna reach me use Keybase, Twitter, Slack. (emails are not the best pick)
+Contact Twitter, Keybase, GitHub, IRC  @epcim
+ Work email epcim(a)apealive.net pmichalec(a)ves.io  Work address Volterra Inc. 2550 Great America Way, Suite 350 Santa Clara, CA 95054 -- Thámova 137/16 Prague - Karlín, 18600 Czech Republic  CV Practicing Developer/Architect/Tech/Team Lead.</description>
+    </item>
+    
+    <item>
+      <title>Brand new &#39;Salted&#39; containers</title>
+      <link>http://apealive.net/post/2018-04-salted-containers/</link>
+      <pubDate>Tue, 03 Apr 2018 17:16:07 +0200</pubDate>
+      
+      <guid>http://apealive.net/post/2018-04-salted-containers/</guid>
+      <description>TL;DR My matrix looks like:
+ invoke.yaml      Tools evaluated To solve the issue I wrote simple &#34;makefile&#34; specification with PyInvoke.
+  </description>
+    </item>
+    
+    <item>
+      <title>Image builds with DockerMake</title>
+      <link>http://apealive.net/post/2018-02-docker-make/</link>
+      <pubDate>Tue, 06 Mar 2018 15:01:07 +0200</pubDate>
+      
+      <guid>http://apealive.net/post/2018-02-docker-make/</guid>
+      <description>&lt;div class=&#34;paragraph lead&#34;&gt;
+&lt;p&gt;Dockerfile is nice, but it’s a puppet toy when it comes to scale. I am looking for
+a solution to consistently build many docker images with shared layers and consistent and predictable build workflow.&lt;/p&gt;
+&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Salt-Formulas updates</title>
+      <link>http://apealive.net/post/2017-12-salt-formulas-updates/</link>
+      <pubDate>Fri, 29 Dec 2017 12:01:07 +0200</pubDate>
+      
+      <guid>http://apealive.net/post/2017-12-salt-formulas-updates/</guid>
+      <description>&lt;p&gt;Sum up all features on salt-formulas project (&lt;a href=&#34;https://github.com/salt-formulas&#34;&gt;https://github.com/salt-formulas&lt;/a&gt;).
+For the first, and only this time, for the whole year.&lt;/p&gt;
+
+&lt;p&gt;The most features comes from Mirantis and it&amp;rsquo;s MCP product portfolio,
+however the public participation in the past year was also important.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Salt water to Helm Chart&#39;s wheel</title>
+      <link>http://apealive.net/post/helm-charts-wheelhouse/</link>
+      <pubDate>Thu, 14 Dec 2017 12:01:07 +0200</pubDate>
+      
+      <guid>http://apealive.net/post/helm-charts-wheelhouse/</guid>
+      <description>&lt;div class=&#34;paragraph lead&#34;&gt;
+&lt;p&gt;Flexible way to perform configuration management actions in the Helm chart&amp;#8217;s.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;We uses years Salt, Chef, Ansible, &amp;#8230;&amp;#8203; to do complex configuration steps, but when it came
+to implement a new feature in Helm Chart app folks once again tend to fall back to bash, curl
+and the Helm hell templates.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_tldr&#34;&gt;TL;DR&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;My use-case is simple. I want to update &lt;a href=&#34;https://github.com/Mirantis/k8s-apps/tree/master/charts/influxdb&#34;&gt;Influxdb chart&lt;/a&gt;.
+and provide way to:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;create database&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;configure users&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;access right&amp;#8217;s&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;continuous_queries&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;retention policies&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Quite common stuff when using influxdb. Additionally any lifecycle will need scheduled cron job to prune data etc. which
+is nothing else then kind of &lt;code&gt;query&lt;/code&gt; to the backend.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Common use-case, but what a surprise the Chart did not had these implemented. Not even upstream one.
+(well google upstream has users + rights but still I was not satisfied.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Wait, in general these and similar functions we already implemented under &#34;Salt/Chef&#34; tools years ago.
+miss as well. There must be a huge gap in functions available in what other charts as well.&lt;/p&gt;
+&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Albania 2017</title>
+      <link>http://apealive.net/post/2017-10-albania-roadtrip/</link>
+      <pubDate>Sun, 22 Oct 2017 01:01:01 +0200</pubDate>
+      
+      <guid>http://apealive.net/post/2017-10-albania-roadtrip/</guid>
+      <description>&lt;div class=&#34;paragraph lead&#34;&gt;
+&lt;p&gt;Three mens, one free week, roadtrip in Albania. Tirana, riviera, south and finally the transit Budapest.&lt;/p&gt;
+&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Salt NACL encryption for external pillars</title>
+      <link>http://apealive.net/post/2017-09-salt-nacl-ext-pillar/</link>
+      <pubDate>Tue, 19 Sep 2017 12:01:07 +0200</pubDate>
+      
+      <guid>http://apealive.net/post/2017-09-salt-nacl-ext-pillar/</guid>
+      <description>&lt;div class=&#34;paragraph lead&#34;&gt;
+&lt;p&gt;This article is about encrypting Satl external pillars with NACL.&lt;/p&gt;
+&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Generate your .ssh/config</title>
+      <link>http://apealive.net/post/ssh-config-compile/</link>
+      <pubDate>Wed, 05 Jul 2017 10:31:07 +0200</pubDate>
+      
+      <guid>http://apealive.net/post/ssh-config-compile/</guid>
+      <description>On ubuntu 16.04 is still an old version of OpenSSH client that don&amp;rsquo;t support include statement&amp;rsquo;s on it&amp;rsquo;s .ssh/config.
+I manage my dotfiles in git repos and one such is .ssh/config.d. The script below is capable take that repo as source and generate the configuration.
+ </description>
+    </item>
+    
+    <item>
+      <title>Byobu script to pre-open session to salt minions</title>
+      <link>http://apealive.net/post/byobu-salt/</link>
+      <pubDate>Thu, 05 Jan 2017 10:31:07 +0200</pubDate>
+      
+      <guid>http://apealive.net/post/byobu-salt/</guid>
+      <description>Recently I wrote an handy script to pre-open byobu session window to most of the minions. And split pane on each minion that create&amp;rsquo;s cluster.
+ </description>
+    </item>
+    
+    <item>
+      <title>Docker Swarm meetup talk</title>
+      <link>http://apealive.net/post/2016_04_dockermeetup-swarm-talk/</link>
+      <pubDate>Wed, 27 Apr 2016 12:39:06 +0200</pubDate>
+      
+      <guid>http://apealive.net/post/2016_04_dockermeetup-swarm-talk/</guid>
+      <description>Docker Swarm I have been working closely with TCP Cloud in my spare time during past weeks to evaluate Docker Swarm cluster orchestration. Kind of easy level to get some insight into the product and it&amp;rsquo;s bugs ;). Yeah.. it&amp;rsquo;s not production ready yet!
+Anyway I am going to deliver a sweet talk and open discussion at today&amp;rsquo;s Docker Meetup (Prague). For these who may concern the presentation is online already.</description>
+    </item>
+    
+    <item>
+      <title>Started IBM internal LEVEL DEVil workshop series</title>
+      <link>http://apealive.net/post/2016-04_started-ibm-internal-level-devil-workshop-series/</link>
+      <pubDate>Mon, 18 Apr 2016 22:39:06 +0200</pubDate>
+      
+      <guid>http://apealive.net/post/2016-04_started-ibm-internal-level-devil-workshop-series/</guid>
+      <description>LEVEL DEVil workshops Running a DevOps workshop for Poland colleagues in March was a one thing but from a day one I was quite sure I will do have to repeat it locally.
+Practicing DevOps and Continuous Delivery in company as IBM and for the enterprise customers might be a tough task. That&amp;rsquo;s nothing about enterprises, IBM is actually on a global level doing pretty much well in my eyes in the kind of internal transformation.</description>
+    </item>
+    
+    <item>
+      <title>Running devops workshop in Warsaw</title>
+      <link>http://apealive.net/post/2016-03_running-devops-workshop-warsaw/</link>
+      <pubDate>Wed, 09 Mar 2016 12:23:39 +0200</pubDate>
+      
+      <guid>http://apealive.net/post/2016-03_running-devops-workshop-warsaw/</guid>
+      <description>DevOps workshop with Chef At the end of the 2015 I was asked by IBM colleague from Poland who is leading a team of Java developers to develop and deliver a DevOps workshop.
+I took a challenge and delivered March 9-10 in Warsaw personally. The slides from the event are available at: http://slides.com/petrmichalec/devops-workshop
+Agenda At first quite challenge as the DevOps topic is so wide, right? Finally I narrowed agenda to some &amp;ldquo;devops&amp;rdquo; discussion, Chef.</description>
+    </item>
+    
+    <item>
+      <title>DevOps Kung-fu workshop</title>
+      <link>http://apealive.net/post/2016-01_devopskungfu/</link>
+      <pubDate>Tue, 26 Jan 2016 13:50:32 +0100</pubDate>
+      
+      <guid>http://apealive.net/post/2016-01_devopskungfu/</guid>
+      <description>Work in progress&amp;hellip;
+I am now working on DevOps workshop that would show up Chef, Consul, Docker possibilities in DEV and orchestration together with KitchenCI and InSpec testing and auditing.
+As a first stage I created my own version for DevOps kung-fu presentation: http://slides.com/petrmichalec/epcim-devops-cult   DevOpsKungFu presentation    Note: this was originaly presented by Adam Jacob / CTO of Chef / @adamhjk - http://github.com/chef/devops-kungfu. Worth to watch youtube stream BTW.</description>
+    </item>
+    
+    <item>
+      <title>I have made my howtos a public Gist&#39;s</title>
+      <link>http://apealive.net/post/gists/</link>
+      <pubDate>Sat, 05 Dec 2015 10:31:07 +0200</pubDate>
+      
+      <guid>http://apealive.net/post/gists/</guid>
+      <description>The url: https://gist.github.com/epcim
+One simple example by many
+ </description>
+    </item>
+    
+    <item>
+      <title>How i found hugo</title>
+      <link>http://apealive.net/post/2015-12-how-i-found-hugo/</link>
+      <pubDate>Mon, 05 Oct 2015 10:31:07 +0200</pubDate>
+      
+      <guid>http://apealive.net/post/2015-12-how-i-found-hugo/</guid>
+      <description>As my Django site from 2006 or so went recently south I decided to to make it up from scratch.
+  Original apealive.net website    Even though I am now pretty solid in DevOps, applying it on low frequency used blog and keeping django running for years it&amp;rsquo;s overhead. I will rather spend that one with my kids. Sorry loved #django #python ;-(.
+On the other hand, during the time, I wrote few pages using static generators and Hugo is the latest one I kept an eye on.</description>
+    </item>
+    
+    <item>
+      <title>Photography</title>
+      <link>http://apealive.net/photo/</link>
+      <pubDate>Mon, 05 Oct 2015 10:28:26 +0200</pubDate>
+      
+      <guid>http://apealive.net/photo/</guid>
+      <description>NOTE: This page is early draft, sorry for inconvenience!
+Photography I enjoy color and like to photograph people and situations.
+This page serve for quick access to our public photographs.
+Pubclic albums  Google+ Flicker  Photostreams  Twitter iCloud,ask to get private links  Equipment Nikon D200 (APS)  28-XXmm Nikkor, Nikkor 50mm f/2, Tamron f/4 12-18mm.  Stativ  Manfroto 190ProB  Who I follow Ken Rockwell I like this man his &amp;ldquo;classic&amp;rdquo; articles.</description>
+    </item>
+    
+    <item>
+      <title>Who is APe?</title>
+      <link>http://apealive.net/about/</link>
+      <pubDate>Mon, 05 Oct 2015 10:28:19 +0200</pubDate>
+      
+      <guid>http://apealive.net/about/</guid>
+      <description>APe je maskot naší rodiny. Dobře profláknutý mezi našimi kamarády pro své kousky. Občas ho ztratíme, takže docela dost cestuje&amp;hellip;
+My, Adriana a Petr, bydlíme v Brandýse nad Labem - Staré Boleslavi spolu s Mikulášem (2012), Štěpánem (2014) a Rozárkou (2016).
+Rádi naplňujeme volný čas sportem, cestami za zážitky , dobrým kafem, vínem, italskou pizzou a dětmi, dětmi, dětmi. V roce 2009, na začátku ekonomické krize jsme si vzali rok pracovního volna a odjeli jsme cestovat na Nový Zaeland, Austrálii, Samou a Cook Islands.</description>
+    </item>
+    
+    <item>
+      <title>Welcome BABE</title>
+      <link>http://apealive.net/post/babe/</link>
+      <pubDate>Sat, 05 Jul 2014 10:31:07 +0200</pubDate>
+      
+      <guid>http://apealive.net/post/babe/</guid>
+      <description>Expecting BABE, promo poster &amp;amp; trailer.
+  Welcome BABE      </description>
+    </item>
+    
+    <item>
+      <title>Mikulášská v srpnu</title>
+      <link>http://apealive.net/post/mikulasska-v-srpnu/</link>
+      <pubDate>Thu, 16 Aug 2012 19:50:29 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/mikulasska-v-srpnu/</guid>
+      <description> Mikuláš pictures leaked - PDF. </description>
+    </item>
+    
+    <item>
+      <title>Mikuláš just born</title>
+      <link>http://apealive.net/post/mikulas-just-born/</link>
+      <pubDate>Tue, 07 Aug 2012 21:46:00 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/mikulas-just-born/</guid>
+      <description>Jsme tři! A vy jste od 21:46 pasovaný na prarodiče, strýce a tetky. Měříme 51cm, Vážíme 3020g a jmenujeme se Mikuláš Michalec.
+Adrika i Mikuláš jsou v pořádku. Prý brnkačka za dvě kačky (říkali sestřičky).
+APe a M</description>
+    </item>
+    
+    <item>
+      <title>We have just purchased ground for family house</title>
+      <link>http://apealive.net/post/we-have-just-purchased-ground-family-house/</link>
+      <pubDate>Tue, 07 Aug 2012 19:29:15 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/we-have-just-purchased-ground-family-house/</guid>
+      <description>In the last year we were looking for new place for living. Today we just purchased it. The ground is located in Stará Boleslav and quite close to city center. We also have some pictures how it may look like once finished. Friends: ehm... The opening party is not yet planed :-) ...
+Location http://mapy.cz/s/4KIH
+ Plans Hope, you like it as we do!
+ </description>
+    </item>
+    
+    <item>
+      <title>Jak se klube Rozinka ?</title>
+      <link>http://apealive.net/post/jak-se-klube-rozinka/</link>
+      <pubDate>Thu, 31 May 2012 18:55:40 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/jak-se-klube-rozinka/</guid>
+      <description>Nechali jsme si u Markéty S. udělat krásné fotky naší rozinky a její rodiny. A myslíme moc se to povedlo. Adrika měla jako vždy bezva náladu a tak to fakt jelo. Sluší jim to moc. APe se tam nakonec raubíř taky vnutil. Jak jinak. My už máme jasno. U fotografa zastavíme pravidelně. Není nad pořádný fotky!
+On a Ona
+She and He
+Spot the APe</description>
+    </item>
+    
+    <item>
+      <title>Last ride of the season 2011</title>
+      <link>http://apealive.net/post/last-ride-season-2011/</link>
+      <pubDate>Mon, 14 Nov 2011 08:24:02 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/last-ride-season-2011/</guid>
+      <description>Saturday was last ride this year.
+ Rychlik p 1831 Jordán odjídí z Praha hl.n. v 8:43. Vlak nečeká na žádné přípoje. Uschova během přepravy rozířená přeprava spoluzavazadel, předevím jízdních kol. Praha-Hostivař 8:56 Čerčany 9:21 Beneov u Prahy 9:31 Střezimíř 10:14 Ve ctvrt na jedenact vyrazime ze zastavky Strezimir a pojedeme po hrebenech nad Prciceme pres Sedlcany na Neveklov, smerem k Sazave a dale ku Praze jak komu libo.
+For me personally and honestly for my bike it was last ride ever.</description>
+    </item>
+    
+    <item>
+      <title>Yeti</title>
+      <link>http://apealive.net/post/yeti/</link>
+      <pubDate>Mon, 14 Nov 2011 08:08:41 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/yeti/</guid>
+      <description>Some our friends says.. we haven&#39;t seen you with your Yeti yet. So here we go with pictures. Three months back we did bought Skoda Yeti 2.0 TDI. Eye-candy, isn&#39;t it?</description>
+    </item>
+    
+    <item>
+      <title>Meeting our flat again</title>
+      <link>http://apealive.net/post/meeting-our-flat-again/</link>
+      <pubDate>Thu, 10 Feb 2011 17:08:18 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/meeting-our-flat-again/</guid>
+      <description>With feelings of &amp;quot;just&amp;quot; longer vacation we are back at home country. Adriana noted that it&#39;s cold and a minute later paced a question When this Europe vacation ends?
+Just for all our readers. We are in CR since 25.12. Since that time to Feb 06 we have been staying in our flat over night just for one night. Seems we are still live like an backpackers :-D. Sure there was couple of reasons - meeting friends, pub &amp;amp; beer, meeting friends, pub &amp;amp; beer etc.</description>
+    </item>
+    
+    <item>
+      <title>Vzpominky a Babicky</title>
+      <link>http://apealive.net/post/vzpominky-a-babicky/</link>
+      <pubDate>Sun, 27 Jun 2010 19:43:14 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/vzpominky-a-babicky/</guid>
+      <description> Vydávám pdf verzi pamětí mojí babičky. Je to rodiná záležitost, ale třeba se najde i někdo jiný kdo se začte.
+Sestavené to je tak jak jsem dostal nakázáno podle číslování. Na konci jsou pak různé články a dopisy které publikovala v tisku.
+Open publication - Free publishing </description>
+    </item>
+    
+    <item>
+      <title>Anki, sentence translation excercises</title>
+      <link>http://apealive.net/post/anki-sentence-translation-excercises/</link>
+      <pubDate>Sun, 06 Jun 2010 16:27:59 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/anki-sentence-translation-excercises/</guid>
+      <description>Summary I have managed to grab Questions and Answers from scanned PDF version of real grammar book and create an Anki deck from it. Although OCR was not perfect at all I was able to restore 50% of all exercises using some smart reg ex replacements in vim editor. Publishing final deck is not possible because of legal issues but I have decided to publish this how-to.
+ Update: I have decided to provide copy of the deck to anybody who will prove that is owner of the book.</description>
+    </item>
+    
+    <item>
+      <title>Working holiday NZ, the APe</title>
+      <link>http://apealive.net/post/working-holiday-nz-ape/</link>
+      <pubDate>Tue, 23 Mar 2010 22:50:31 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/working-holiday-nz-ape/</guid>
+      <description>Working holiday on New Zealand - Y1m1 Autor:Petr Michalec, Adriana Michalcova  Contacts:epcim&amp;#64;apealive.net, adrika&amp;#64;apealive.net    Release info
+Notes about our working holiday on New Zealand in 2010.
+There is also a &#39;day2day&#39; blog (czech language only) from our trip on http://travelpod.com/members/epcim trip.
+LatestUpdate:03/2010  Version:1.4 DRAFT     Content
+Planning a trip APe&#39;s ideas for NZ trip Airplane tickets What to pack (updated from NZ) Experience with equipment we have Cooker     APe&#39;s NZ 2010 Guide book Just after arrival Car or wan Prepaid SIM card NZ Bank account IRD - Invoice number Other   Expenses Where to save money What we remember we have paid for   Places to visit Northland Southern   Useful links Other guides and blogs NZ Immigration Job Traveling, back country related info       Planning a trip Here comes some notes for other NZ travelers.</description>
+    </item>
+    
+    <item>
+      <title>One Year of unpaid absence - Started</title>
+      <link>http://apealive.net/post/one-year-unpaid-absence-started/</link>
+      <pubDate>Tue, 19 Jan 2010 19:03:49 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/one-year-unpaid-absence-started/</guid>
+      <description>Takže jsme se dali konečně do pohybu. Zatím uvádím kontakty kde jsme k zastižení. Blog z cest zatím publikujeme přes travelpod.com. internet telefon - (skype.com) cze_pmichalec email ape &amp;#64; apealive.net (prijde to oboum) www stránky, blog http://apealive.net a http://www.travelpod.com/members/epcim chat/instant messaging epcim &amp;#64; njs.netlab.cz (integruje jabber, icq, facebook)  APe</description>
+    </item>
+    
+    <item>
+      <title>Narozeniny adrika</title>
+      <link>http://apealive.net/post/narozeni-adrika/</link>
+      <pubDate>Wed, 06 Jan 2010 01:09:53 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/narozeni-adrika/</guid>
+      <description>Patek 8.1.2010 Už se na Vás těšíme.
+Adrika slavi 18-tiny, Takze se sejdeme unas v 30pm. Akcicka, kalbicka.
+APe</description>
+    </item>
+    
+    <item>
+      <title>procabrit mozek II</title>
+      <link>http://apealive.net/post/procabrit-mozek-ii/</link>
+      <pubDate>Tue, 01 Dec 2009 09:22:14 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/procabrit-mozek-ii/</guid>
+      <description>Je to nějakou dobu co jsem se zaměřil na výběr aplikace co by mi opět pomohl zapomenout zapomínat.
+Tenhle post jsem připravil jako návod pro všechny kamarády, kdo budou mít zájem se do toho taky pustit.
+Tak před deseti lety jsem si pořídil [1]_ sw Supermemo na učení anglických slovíček. Nutno dodat, že v tomhle oboru mám jen ty nejlepší zkušenosti. Za rok a půl jsem natřískal do hlavy přes 4000 slovíček.</description>
+    </item>
+    
+    <item>
+      <title>Evolution of wedding dance - by APe</title>
+      <link>http://apealive.net/post/evolution-wedding-dance-ape/</link>
+      <pubDate>Sat, 21 Nov 2009 21:28:00 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/evolution-wedding-dance-ape/</guid>
+      <description>If nothing else, our first dance is online: https://www.youtube.com/watch?v=TgyVdBeBVgk
+  </description>
+    </item>
+    
+    <item>
+      <title>Tak jsme upgradovali</title>
+      <link>http://apealive.net/post/tak-jsme-upgradovali/</link>
+      <pubDate>Wed, 28 Oct 2009 21:53:02 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/tak-jsme-upgradovali/</guid>
+      <description>Tak jsem právě nahrál novou verzi webu. Lucka s Karlem mne určitě utlučou, že jsem raději neupravoval fotografie z &amp;quot;večerníčkové&amp;quot; akce. Na ty se ovšem taky těším, takže jsou hned v pořadí. Co je na webu nového. Dokončena stránka tagů, upravena stránka bookmarků, lehce vylepšen vzhed a konečně podpora captcha fieldu u komentářů, takže konec spamům.</description>
+    </item>
+    
+    <item>
+      <title>Jak odstranit diakritiku z názvu souborů</title>
+      <link>http://apealive.net/post/jak-odstranit-diakritiku-z-nazvu-souboru/</link>
+      <pubDate>Tue, 23 Jun 2009 10:44:06 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/jak-odstranit-diakritiku-z-nazvu-souboru/</guid>
+      <description>Potřeboval jsem odstranit diakritiku z n&amp;aacute;zvů souborů. Pod winxp s cygwinem (tr viz d&amp;aacute;le nefungoval a o př&amp;iacute;kazu unaccent jsem nevěděl). PS: Filtruji .svn adres&amp;aacute;ře. S unaccent by to bylo asi v&amp;yacute;razně rychlej&amp;scaron;&amp;iacute;. IFS je asi zbytečn&amp;eacute;. Um&amp;iacute; si poradit s duplicitami. Adres&amp;aacute;ře neře&amp;scaron;&amp;iacute;.
+V&amp;yacute;sledek vypad&amp;aacute; takto:
+#!/bin/bash srcenc=cp1250 SAVEIFS=$IFS IFS=$(echo -en “\n\b”) if [ $# -eq 0 ];then echo “Usage: $0 directory …” else while [ $# -gt 0 ];do if [ -d “$1” ];then find “$1” -mindepth 1 -maxdepth 1 -type f | grep -v “.</description>
+    </item>
+    
+    <item>
+      <title>Pročabřit mozek</title>
+      <link>http://apealive.net/post/procabrit-mozek/</link>
+      <pubDate>Fri, 10 Apr 2009 15:44:01 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/procabrit-mozek/</guid>
+      <description>&amp;nbsp;
+Zn&amp;aacute;te to, občas je dobr&amp;eacute; si nějak&amp;aacute; slov&amp;iacute;čka zopakovat.
+Hledal jsem nějak&amp;yacute; pěkn&amp;yacute; opensource co by mi vynahradil dnes už poněkud zastaral&amp;eacute; a v linuxu nepodporovan&amp;eacute; Supermemo . No a na&amp;scaron;el jsem minim&amp;aacute;lně dva pěkn&amp;eacute; kousky. Tak za t&amp;yacute;den se poděl&amp;iacute;m o zku&amp;scaron;enosti, teď mě ček&amp;aacute; konverze znalostn&amp;iacute; datab&amp;aacute;ze supermemo2004 do Q&amp;amp;A form&amp;aacute;tu co schroustaj&amp;iacute; ty prvn&amp;iacute; dva.
+
+Anki  - http://ichi2.net/anki/index.html
+Pěkn&amp;yacute;, podporuje mobiln&amp;iacute; klienty pro iPhone a Android, akor&amp;aacute;t vy&amp;scaron;la nov&amp;aacute; verze, datab&amp;aacute;ze se daj&amp;iacute; stahovat a sd&amp;iacute;let na internetu, online verze.</description>
+    </item>
+    
+    <item>
+      <title>Rozlučka .....</title>
+      <link>http://apealive.net/post/rozlucka-se-svobodou-ou-ou-ou/</link>
+      <pubDate>Fri, 10 Apr 2009 14:28:24 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/rozlucka-se-svobodou-ou-ou-ou/</guid>
+      <description>Rozlučku organizuje svědek. Pozvan&amp;iacute; dostali email, ostatn&amp;iacute; pokud jsem na někoho zapomenul, se tedy dostav&amp;iacute; jako překvapen&amp;iacute; :-D  
+Term&amp;iacute;n : 11.4.2009
+Pl&amp;aacute;n :
+Odpoledn&amp;iacute; program  - motok&amp;aacute;ry v Letňanech - http://www.motokary.com
+Večern&amp;iacute; program  - &amp;quot;Na zlatou pivn&amp;iacute; &amp;Scaron;treku Prahou&amp;quot;
+Možn&amp;aacute; a pravděpodobn&amp;aacute; zastaven&amp;iacute;
+  U Čern&amp;eacute;ho vola, Loret&amp;aacute;nsk&amp;eacute; n&amp;aacute;m. 1  U Jel&amp;iacute;nka, Charv&amp;aacute;tova 1  U Zlateho Tygra, H usova 17   Pivnice U Hrocha, T hunovsk&amp;aacute; 178/10   Restaurace U Pinkasů, Jungmannovo n&amp;aacute;m.</description>
+    </item>
+    
+    <item>
+      <title>Exiftool - pár triků na fotky</title>
+      <link>http://apealive.net/post/exiftool-par-triku-na-fotky/</link>
+      <pubDate>Fri, 10 Apr 2009 11:53:44 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/exiftool-par-triku-na-fotky/</guid>
+      <description>&amp;nbsp;
+Ahoj, dnes prakticky.
+V&amp;scaron;ichni fot&amp;iacute;me. M&amp;aacute;m v ruk&amp;aacute;vu p&amp;aacute;r triků pro manipulaci s exif informac&amp;iacute; uloženou ve fotografii. Při zpracov&amp;aacute;n&amp;iacute; fotek z Thajska jsem měl z&amp;aacute;běry z cca pěti fotoapar&amp;aacute;tů. Někteř&amp;iacute; autoři měnili čas fotoapar&amp;aacute;tu během přejezdů čaosov&amp;yacute;ch z&amp;oacute;n, jin&amp;iacute; ne. Bylo třeba hromadně opravit čas ve v&amp;scaron;ech fotk&amp;aacute;ch a pokud možno dos&amp;aacute;hnout jednotn&amp;eacute;ho řazen&amp;iacute; fotek v adres&amp;aacute;ři pro př&amp;iacute;jemn&amp;eacute; proch&amp;aacute;zen&amp;iacute;.
+Potřeboval jsem tedy co uměl modifikovat v exif informaci fotografie datum a čas vytvořen&amp;iacute;.</description>
+    </item>
+    
+    <item>
+      <title>Dovolená v Thajsku</title>
+      <link>http://apealive.net/post/dovolena-v-thajsku/</link>
+      <pubDate>Wed, 25 Mar 2009 19:52:15 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/dovolena-v-thajsku/</guid>
+      <description>Rodin&amp;aacute;m a kamar&amp;aacute;dům - p&amp;aacute;r linků kde n&amp;aacute;s můžete sledovat na na&amp;scaron;&amp;iacute; cestě:
+http://picasaweb.google.com/ape.prague/Thailand09_APeHroch
+http://picasaweb.google.com/ape.prague/Thailand09
+Kde jsme co děl&amp;aacute;me se budeme snažit prezentovat na travelpod , men&amp;scaron;&amp;iacute; denn&amp;iacute; ud&amp;aacute;losti - pokud se dostaneme k internetu pak zde twitter .
+V ponděl&amp;iacute; 26.1.2009 v 15:00h n&amp;aacute;m let&amp;iacute; letadlo z Mnichova do Dubaje. R&amp;aacute;no pak let&amp;iacute;me chartovym letem do Bangkoku. Doraz&amp;iacute;me pozdě odpoledne. No a pak to začne. Vrac&amp;iacute;me se tu&amp;scaron;&amp;iacute;m ve středu 18.</description>
+    </item>
+    
+    <item>
+      <title>Svatební oznámení</title>
+      <link>http://apealive.net/post/svatebni-oznameni/</link>
+      <pubDate>Mon, 23 Mar 2009 20:41:34 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/svatebni-oznameni/</guid>
+      <description>Adriana Dlouh&amp;aacute; a Petr Michalec oznamuj&amp;iacute; den sv&amp;eacute;ho sňatku 
+24.4.2009 v 15hod v Dřevčick&amp;eacute; tvrzi  
+ 
+Dostaven&amp;iacute;čko | Cesta | Program | Dary | Rozlučka | Kontakty | Karaoke
+Aktualizov&amp;aacute;no:   
+23/03/2009 - [A] Pros&amp;iacute;me v&amp;scaron;echny pozvan&amp;eacute; o potvrzen&amp;iacute; &amp;uacute;časti emailem na ape (At) apealive.net. [B] Link na fotografie z pozv&amp;aacute;nky .  [C] V&amp;scaron;echna pr&amp;aacute;va vlastn&amp;iacute;ka, v&amp;yacute;robce a vlastn&amp;iacute;ků autorsk&amp;yacute;ch pr&amp;aacute;v k d&amp;iacute;lům na na&amp;scaron;&amp;iacute; pozv&amp;aacute;nce jsou vyhrazena.</description>
+    </item>
+    
+    <item>
+      <title>three two one ignition !</title>
+      <link>http://apealive.net/post/three-two-one-ignition/</link>
+      <pubDate>Sun, 25 Jan 2009 22:16:26 +0000</pubDate>
+      
+      <guid>http://apealive.net/post/three-two-one-ignition/</guid>
+      <description>Wau .. it just works. As was expected. Unbelievable 3:-o
+We are ready to begin. Let&#39;s go explore and generate bugs. huh.. And of course many thanks to folks behind: django, python, vim, linux, dojo and all other stuff I used.
+PMi</description>
+    </item>
+    
+  </channel>
+</rss>
